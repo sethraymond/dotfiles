@@ -130,4 +130,4 @@ function nonzero_return() {
 		echo "$RETVAL"
 }
 
-export PS1="\`nonzero_return\` \[\e[32m\]\u\[\e[m\]\[\e[32m\]@\[\e[m\]\[\e[32m\]\h\[\e[m\] \[\e[37m\]\t\[\e[m\] : \[\e[31m\]\W\[\e[m\]\[\e[31m\]\\$\[\e[m\] "
+export PS1="\`nonzero_return\` \[\e[32m\]\u\[\e[m\]\[\e[32m\]@\[\e[m\]\[\e[32m\]\h\[\e[m\] \[\e[37m\]\t\[\e[m\] : \[\e[33m\]\W\[\e[m\]\[\e[33m\]\\$\[\e[m\] "
