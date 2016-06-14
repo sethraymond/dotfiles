@@ -122,5 +122,12 @@ if ! shopt -oq posix; then
 fi
 
 #An attempt to set the default text editor?
-export EDITOR=subl
-source /home/seth/perl5/perlbrew/etc/bashrc
+#export EDITOR=subl
+#source /home/seth/perl5/perlbrew/etc/bashrc
+
+function nonzero_return() {
+		RETVAL=$?
+		echo "$RETVAL"
+}
+
+export PS1="\`nonzero_return\` \[\e[32m\]\u\[\e[m\]\[\e[32m\]@\[\e[m\]\[\e[32m\]\h\[\e[m\] \[\e[37m\]\t\[\e[m\] : \[\e[31m\]\W\[\e[m\]\[\e[31m\]\\$\[\e[m\] "
