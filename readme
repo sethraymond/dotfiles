@@ -1,0 +1,8 @@
+These are some of the dotfiles that I have developed over time. The bashrc is
+nice, as it shows when you are working in a git directory and what the current
+working branch is. The vimrc file has some functions that I use (avoiding ESC
+and using jk to break out of insert mode).
+
+A WORD OF WARNING: The installation script will overwrite your old dotfiles!
+However, the script does preserve the last version of dotfiles in the directory
+~/olddots/
