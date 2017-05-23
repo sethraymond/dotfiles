@@ -89,11 +89,6 @@ if [ -x /usr/bin/dircolors ]; then
 	alias egrep='egrep --color=auto'
 fi
 
-alias grep='grep -E'
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-
 if [ -f ~/.bash_aliases ]; then
 	. ~/.bash_aliases
 fi

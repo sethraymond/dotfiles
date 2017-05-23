@@ -13,8 +13,9 @@ set shiftwidth=4
 set colorcolumn=80
 
 " Custom keybinds
-noremap <S-Enter> O<Esc>j
+" Pressing enter adds a new line below the cursor and keeps it in the same position
 noremap <CR> o<Esc>k
+" Use jk to change from Insert mode to Normal mode 
 ino jk <Esc>
 cno jk <c-c>
 
