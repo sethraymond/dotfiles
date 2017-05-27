@@ -39,9 +39,9 @@ PROMPT_COMMAND="postcommand"
 function checkgitdir() {
 	git -C $PWD rev-parse > /dev/null 2>&1
 	if [ $? -eq 0 ]; then
-		PS1="\$? \[\e[32m\]\u \[\e[37m\]\t\[\e[m\] : \[\e[33m\]\w \e[1;36m\](`git rev-parse --abbrev-ref HEAD`) \e[0;33m\]\$\[\e[m\] "
+		PS1="\$? \[\e[32m\]\u@\[\e[m\]\[\e[32m\]\h\[\e[m\] \[\e[37m\]\t\[\e[m\] : \[\e[33m\]\w \e[1;36m\](`git rev-parse --abbrev-ref HEAD`) \e[0;33m\]\$\[\e[m\] "
 	else
-		PS1="\$? \[\e[32m\]\u \[\e[37m\]\t\[\e[m\] : \[\e[33m\]\w \$\[\e[m\] "
+		PS1="\$? \[\e[32m\]\u@\[\e[m\]\[\e[32m\]\h\[\e[m\] \[\e[37m\]\t\[\e[m\] : \[\e[33m\]\w \$\[\e[m\] "
 	fi
 }
 
