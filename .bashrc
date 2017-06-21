@@ -4,6 +4,18 @@
 #get the current command before execution
 
 # get current status of git repo
+
+function parse_git_branch() {
+	BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
+	if [ ! "${BRANCH}" == "" ]
+	then
+		STAT=`parse_git_dirty`
+		echo "(${BRANCH}${STAT})"
+	else
+		echo ""
+	fi
+}
+
 function parse_git_dirty {
 	status=`git status 2>&1 | tee`
 	dirty=`echo -n "${status}" 2> /dev/null | grep "modified:" &> /dev/null; echo "$?"`
@@ -38,12 +50,11 @@ function parse_git_dirty {
 	fi
 }
 
-function nonzero_return() {
-	RETVAL=$?
-	[ $RETVAL -ne 0 ] && echo "$RETVAL"
+function retval() {
+	echo $?
 }
 
-export PS1="\[\e[37m\]\`nonzero_return\`\[\e[m\] \[\e[32m\]\u\[\e[m\]\[\e[32m\]@\[\e[m\]\[\e[32m\]\h\[\e[m\] \[\e[37m\]\t\[\e[m\] : \[\e[33m\]\w\[\e[m\] \[\e[36m\]\`parse_git_branch\`\[\e[m\] "
+export PS1="\[\e[37m\]\`retval\`\[\e[m\] \[\e[32m\]\u\[\e[m\]\[\e[32m\]@\[\e[m\]\[\e[32m\]\h\[\e[m\] \[\e[37m\]\t\[\e[m\] : \[\e[33m\]\w\[\e[m\] \[\e[36m\]\`parse_git_branch\`\[\e[m\] "
 
 # The rest is mostly cut from the ~/.bashrc that comes with Ubuntu
 # Don't put duplicate lines or lines starting with space in the history
@@ -71,9 +82,7 @@ if [ -n "$force_color_prompt" ]; then
 	fi
 fi
 
-if [ "$color_prompt" = yes ]; then
-	checkgitdir;
-else
+if [ "$color_prompt" = no ]; then
 	PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 unset color_prompt force_color_prompt
