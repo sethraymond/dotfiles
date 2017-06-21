@@ -2,50 +2,48 @@
 
 #functions required for getting git branch for updating terminal prompt
 #get the current command before execution
-function precommand() {
 
-	if [ -z "$AT_PROMPT" ]; then
-		return
+# get current status of git repo
+function parse_git_dirty {
+	status=`git status 2>&1 | tee`
+	dirty=`echo -n "${status}" 2> /dev/null | grep "modified:" &> /dev/null; echo "$?"`
+	untracked=`echo -n "${status}" 2> /dev/null | grep "Untracked files" &> /dev/null; echo "$?"`
+	ahead=`echo -n "${status}" 2> /dev/null | grep "Your branch is ahead of" &> /dev/null; echo "$?"`
+	newfile=`echo -n "${status}" 2> /dev/null | grep "new file:" &> /dev/null; echo "$?"`
+	renamed=`echo -n "${status}" 2> /dev/null | grep "renamed:" &> /dev/null; echo "$?"`
+	deleted=`echo -n "${status}" 2> /dev/null | grep "deleted:" &> /dev/null; echo "$?"`
+	bits=''
+	if [ "${renamed}" == "0" ]; then
+		bits=">${bits}"
 	fi
-	unset AT_PROMPT
-	arr=($BASH_COMMAND)
-
-}
-trap "precommand" DEBUG
-
-#check to see if command is a git command - if so, check current branch name
-FIRST_PROMPT=1
-function postcommand() {
-
-	AT_PROMPT=1
-
-	if [ -n "$FIRST_PROMPT" ]; then
-		unset FIRST_PROMPT
-		return
+	if [ "${ahead}" == "0" ]; then
+		bits="*${bits}"
 	fi
-
-	if [ -n "$arr" ]; then
-		if [ "${arr[0]}" == "git" ]; then
-			checkgitdir;
-		fi
+	if [ "${newfile}" == "0" ]; then
+		bits="+${bits}"
 	fi
-
-}
-PROMPT_COMMAND="postcommand"
-
-#edit prompt and display current branch if in a git repository
-#current formatting:
-# retval user@host - time : current directory [optional: checked out branch] $
-function checkgitdir() {
-	git -C $PWD rev-parse > /dev/null 2>&1
-	if [ $? -eq 0 ]; then
-		PS1="\$? \[\e[32m\]\u@\[\e[m\]\[\e[32m\]\h\[\e[m\] \[\e[37m\]\t\[\e[m\] : \[\e[33m\]\w \e[1;36m\](`git rev-parse --abbrev-ref HEAD`) \e[0;33m\]\$\[\e[m\] "
+	if [ "${untracked}" == "0" ]; then
+		bits="?${bits}"
+	fi
+	if [ "${deleted}" == "0" ]; then
+		bits="x${bits}"
+	fi
+	if [ "${dirty}" == "0" ]; then
+		bits="!${bits}"
+	fi
+	if [ ! "${bits}" == "" ]; then
+		echo " ${bits}"
 	else
-		PS1="\$? \[\e[32m\]\u@\[\e[m\]\[\e[32m\]\h\[\e[m\] \[\e[37m\]\t\[\e[m\] : \[\e[33m\]\w \$\[\e[m\] "
+		echo ""
 	fi
 }
 
-function cd() { builtin cd "$@" && checkgitdir; }
+function nonzero_return() {
+	RETVAL=$?
+	[ $RETVAL -ne 0 ] && echo "$RETVAL"
+}
+
+export PS1="\[\e[37m\]\`nonzero_return\`\[\e[m\] \[\e[32m\]\u\[\e[m\]\[\e[32m\]@\[\e[m\]\[\e[32m\]\h\[\e[m\] \[\e[37m\]\t\[\e[m\] : \[\e[33m\]\w\[\e[m\] \[\e[36m\]\`parse_git_branch\`\[\e[m\] "
 
 # The rest is mostly cut from the ~/.bashrc that comes with Ubuntu
 # Don't put duplicate lines or lines starting with space in the history
