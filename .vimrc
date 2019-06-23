@@ -45,3 +45,9 @@ set showmatch
 " Spelling - default to spell check off, enable with :SPELL
 :command SPELL setlocal spell spelllang=en_us
 :command NOSPELL set nospell
+
+" Change cursor in insert mode to be a vertical line
+let &t_ti.="\<Esc>[1 q"
+let &t_SI.="\<Esc>[5 q"
+let &t_EI.="\<Esc>[1 q"
+let &t_te.="\<Esc>[0 q"
