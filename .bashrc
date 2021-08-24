@@ -96,6 +96,6 @@ if [ -x /usr/bin/dircolors ]; then
 	alias egrep='egrep --color=auto'
 fi
 
-if [ -f ~/.bash_aliases ]; then
-	. ~/.bash_aliases
+if [ -f ~/.aliases ]; then
+	. ~/.aliases
 fi

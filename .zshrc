@@ -97,8 +97,4 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias ll="ls -alF"
-alias la="ls -A"
-alias grep="grep -E"
-alias findfile='sudo find / -iname'
-alias findpath='sudo find / -path'
+source $HOME/.aliases
