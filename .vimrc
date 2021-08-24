@@ -55,13 +55,5 @@ let &t_SI.="\<Esc>[5 q"
 let &t_EI.="\<Esc>[1 q"
 let &t_te.="\<Esc>[0 q"
 
-" Set very magic regex syntax
-nnoremap / /\v
-vnoremap / /\v
-cnoremap %s/ %smagic/
-cnoremap \>s/ \>smagic/
-nnoremap :g/ :g/\v
-nnoremap :g// :g//
-
 " Set _ as a word delimiter
 set iskeyword-=_
