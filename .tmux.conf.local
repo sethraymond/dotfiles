@@ -237,18 +237,19 @@ tmux_conf_theme_right_separator_sub='\uE0B3'  #   PowerlineSymbols.otf font, see
 #     - #{uptime_s}
 #     - #{username}
 #     - #{username_ssh}
-tmux_conf_theme_status_left=" ❐ #S | ↑#{?uptime_y, #{uptime_y}y,}#{?uptime_d, #{uptime_d}d,}#{?uptime_h, #{uptime_h}h,}#{?uptime_m, #{uptime_m}m,} "
-tmux_conf_theme_status_right=" #{prefix}#{mouse}#{synchronized} , %R , %d %b | #{username}#{root} | #{hostname} "
 
-# status left style
-tmux_conf_theme_status_left_fg="$tmux_conf_theme_colour_black,$tmux_conf_theme_colour_white,$tmux_conf_theme_colour_black"  # text colors
-tmux_conf_theme_status_left_bg="$tmux_conf_theme_colour_lightgray,$tmux_conf_theme_colour_darkblue"
-tmux_conf_theme_status_left_attr="bold,none,none"
+# status left
+tmux_conf_theme_status_left=" ↑#{?uptime_y, #{uptime_y}y,}#{?uptime_d, #{uptime_d}d,}#{?uptime_h, #{uptime_h}h,}#{?uptime_m, #{uptime_m}m,} | #{cpu_mem_load} | ❐ #S "
+tmux_conf_theme_status_left_bg="$tmux_conf_theme_colour_darkblue,$tmux_conf_theme_colour_darkgray,$tmux_conf_theme_colour_lightgray"
+tmux_conf_theme_status_left_fg="$tmux_conf_theme_colour_white,$tmux_conf_theme_colour_white,$tmux_conf_theme_colour_black,$tmux_conf_theme_colour_black"  # text colors
+tmux_conf_theme_status_left_attr="bold,none,none,none"
 
-# status right style
-tmux_conf_theme_status_right_fg="$tmux_conf_theme_colour_lightgray,$tmux_conf_theme_colour_black,$tmux_conf_theme_colour_black"
+# status right
+# "#($TMUX_PLUGIN_MANAGER_PATH/tmux-mem-cpu-load/tmux-mem-cpu-load --interval 2"
+tmux_conf_theme_status_right=" #{prefix}#{mouse}#{synchronized} , %R , %d %b  | #{username}#{root} | #{hostname} "
 tmux_conf_theme_status_right_bg="$tmux_conf_theme_colour_black,$tmux_conf_theme_colour_green2,$tmux_conf_theme_colour_white"
-tmux_conf_theme_status_right_attr="none,none,bold"
+tmux_conf_theme_status_right_fg="$tmux_conf_theme_colour_lightgray,$tmux_conf_theme_colour_black,$tmux_conf_theme_colour_black"
+tmux_conf_theme_status_right_attr="none,none,none,bold"
 
 # pairing indicator
 tmux_conf_theme_pairing="⚇"                 # U+2687
@@ -338,15 +339,15 @@ tmux_conf_copy_to_os_clipboard=true
 # this is the place to override or undo settings
 
 # increase history size
-#set -g history-limit 10000
+set -g history-limit 10000
 
 # start with mouse mode enabled
 set -g mouse on
 
 # force Vi mode
 #   really you should export VISUAL or EDITOR environment variable, see manual
-#set -g status-keys vi
-#set -g mode-keys vi
+set -g status-keys vi
+set -g mode-keys vi
 
 # split panes with | and -
 bind -n M-\\ split-window -h
@@ -372,7 +373,6 @@ set-option -g update-environment 'DBUS_SESSION_BUS_ADDRESS'
 
 # move status line to top
 #set -g status-position top
-
 
 # -- tpm -----------------------------------------------------------------------
 
@@ -413,6 +413,8 @@ tmux_conf_uninstall_plugins_on_reload=true
 #set -g @plugin 'tmux-plugins/tmux-cpu'
 set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @plugin 'tmux-plugins/tmux-continuum'
+set -g @plugin 'tmux-plugins/tmux-yank'
+set -g @plugin 'thewtex/tmux-mem-cpu-load'
 set -g @continuum-boot 'on'
 set -g @continuum-restore 'on'
 
@@ -439,6 +441,10 @@ set -g @continuum-restore 'on'
 #
 # online() {
 #   ping -c 1 1.1.1.1 >/dev/null 2>&1 && printf '✔' || printf '✘'
+# }
+#
+# cpu_mem_load() {
+#   $TMUX_PLUGIN_MANAGER_PATH/tmux-mem-cpu-load/tmux-mem-cpu-load --interval 2 -a 1
 # }
 #
 # "$@"
