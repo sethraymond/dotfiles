@@ -444,7 +444,7 @@ set -g @continuum-restore 'on'
 # }
 #
 # cpu_mem_load() {
-#   $TMUX_PLUGIN_MANAGER_PATH/tmux-mem-cpu-load/tmux-mem-cpu-load --interval 2 -a 1
+#   $TMUX_PLUGIN_MANAGER_PATH/tmux-mem-cpu-load/tmux-mem-cpu-load --interval 2 -a 0
 # }
 #
 # "$@"
