@@ -338,6 +338,9 @@ tmux_conf_copy_to_os_clipboard=true
 # -- user customizations -------------------------------------------------------
 # this is the place to override or undo settings
 
+# sync colors between terminal and nvim
+set-option -sa terminal-overrides ",xterm*:Tc"
+
 # increase history size
 set -g history-limit 10000
 
