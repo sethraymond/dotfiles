@@ -13,17 +13,21 @@ local plugins = {
   },
   {
     "chentoast/marks.nvim",
+    lazy = false,
     config = function ()
       require("marks").setup {
         builtin_marks = { ".", "<", ">", "^" },
       }
     end,
   },
-  --{
-  --  "gaborvecsei/memento.nvim",
-  --  dependencies = { "nvim-lua/plenary.nvim" },
-  --  lazy = false,
-  --},
+  {
+    "gaborvecsei/memento.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    lazy = false,
+    config = function()
+      vim.g.memento_shorten_path = false
+    end,
+  },
   {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
