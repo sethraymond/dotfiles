@@ -1,4 +1,4 @@
--- local overrides = require("custom.configs.overrides")
+local overrides = require("custom.configs.overrides")
 
 ---@type NvPluginSpec[]
 local plugins = {
@@ -33,6 +33,33 @@ local plugins = {
     event = "InsertEnter",
     opts = {},
   },
+  {
+    "tanvirtin/vgit.nvim",
+    lazy = false,
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    config = function()
+      require('vgit').setup()
+    end,
+  },
+  {
+    "rbong/vim-flog",
+    dependencies = { "tpope/vim-fugitive" }
+  },
+
+  -- overrides
+  {
+    "williamboman/mason.nvim",
+    opts = overrides.mason,
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = overrides.treesitter,
+  },
+  {
+    "nvim-tree/nvim-tree.lua",
+    opts = overrides.nvimtree
+  }
+
 }
 
 return plugins
