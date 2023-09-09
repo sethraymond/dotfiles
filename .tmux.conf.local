@@ -358,19 +358,6 @@ bind -n M-- split-window -v
 unbind '"'
 unbind %
 
-# pane-switching like custom vimrc
-bind -n C-l select-pane -R
-bind -n C-k select-pane -U
-bind -n C-j select-pane -D
-bind -n C-h select-pane -L
-
-# Fix issues with pinentry-curses
-set-option -g update-environment 'DBUS_SESSION_BUS_ADDRESS'
-
-# Fix VSCode/tmux integration
-# update VSCODE variables from integrated terminal so that `code` command opens in current window
-set-option -ga update-environment ' VSCODE_GIT_ASKPASS_NODE VSCODE_GIT_ASKPASS_MAIN VSCODE_IPC_HOOK_CLI PATH GIT_ASKPASS'
-
 # replace C-b by C-a instead of using both prefixes
 # set -gu prefix2
 # unbind C-a
