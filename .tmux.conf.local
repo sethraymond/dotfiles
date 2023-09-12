@@ -356,7 +356,7 @@ set -g mode-keys vi
 bind -n M-\\ split-window -h
 bind -n M-- split-window -v
 unbind '"'
-unbind %
+unbind \%
 
 # replace C-b by C-a instead of using both prefixes
 # set -gu prefix2
