@@ -21,6 +21,8 @@ require'nvim-treesitter.configs'.setup {
 	  "jsonc",
 	  "lua",
 	  "make",
+	  "markdown",
+	  "markdown_inline",
 	  "python",
 	  "requirements",
 	  "typescript",
