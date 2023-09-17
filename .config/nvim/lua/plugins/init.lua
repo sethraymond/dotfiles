@@ -8,7 +8,7 @@ return {
 		},
 	},
 	{ "navarasu/onedark.nvim" },
-	{ 
+	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 	},
@@ -40,5 +40,19 @@ return {
 			{'L3MON4D3/LuaSnip'},     -- Required
 		}
 	},
+	{
+		"christoomey/vim-tmux-navigator",
+		lazy = false,
+	},
+	{
+		"chentoast/marks.nvim",
+		lazy = false,
+		config = function ()
+			require("marks").setup {
+				builtin_marks = { ".", "<", ">", "^" },
+			}
+		end,
+	},
+
 }
 
