@@ -1,5 +1,7 @@
 return {
-	{ "folke/which-key.nvim" },
+	{
+		"folke/which-key.nvim"
+	},
 	{
 		"nvim-telescope/telescope.nvim",
 		tag = "0.1.3",
@@ -7,7 +9,9 @@ return {
 			"nvim-lua/plenary.nvim",
 		},
 	},
-	{ "navarasu/onedark.nvim" },
+	{
+		"navarasu/onedark.nvim"
+	},
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
@@ -53,6 +57,8 @@ return {
 			}
 		end,
 	},
-
+	{
+		"nvim-tree/nvim-tree.lua",
+	},
 }
 
