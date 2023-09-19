@@ -1,5 +1,6 @@
 require("keymaps")
 
+-- lazy.nvim boilerplate
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -15,4 +16,9 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins")
 
-vim.opt.relativenumber = true
+-- Set line numbering and relative numbering as default
+vim.wo.number = true
+vim.wo.relativenumber = true
+
+-- Sync vim clipboard w/ system
+vim.o.clipboard = 'unnamedplus'
