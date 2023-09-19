@@ -30,6 +30,9 @@ return {
 		"tpope/vim-fugitive",
 	},
 	{
+		"tpope/vim-sleuth",
+	},
+	{
 		'VonHeikemen/lsp-zero.nvim',
 		branch = 'v2.x',
 		dependencies = {
@@ -60,5 +63,26 @@ return {
 	{
 		"nvim-tree/nvim-tree.lua",
 	},
+	{
+		"nvim-lualine/lualine.nvim",
+		opts = {
+			options = {
+				icons_enabled = true,
+				theme = 'onedark',
+				component_separators = "|",
+				section_separators = '',
+			},
+		},
+	},
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		opts = {
+			char = '|',
+			show_trailing_blankline_indent = false,
+		},
+	},
+	{
+		"numToStr/Comment.nvim",
+		opts = {}
+	},
 }
-
