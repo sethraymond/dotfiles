@@ -20,6 +20,8 @@ require("lazy").setup({ import = "plugins" })
 -- Set line numbering and relative numbering as default
 vim.wo.number = true
 vim.wo.relativenumber = true
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
 
 -- Sync vim clipboard w/ system
 vim.o.clipboard = 'unnamedplus'
