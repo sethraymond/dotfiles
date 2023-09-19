@@ -1,5 +1,28 @@
 local lsp = require('lsp-zero').preset({})
 
+require('mason').setup({})
+require('mason-lspconfig').setup({
+	ensure_installed = {
+		-- lua
+		"lua_ls",
+		-- web dev
+		"angularls",
+		"cssls",
+		"html",
+		"tsserver",
+		--python
+		"pyright",
+		"pylsp",
+		-- C++
+		"clangd",
+		-- Docker
+		"dockerls",
+	},
+	handlers = {
+		lsp.default_setup,
+	},
+})
+
 lsp.on_attach(function(client, bufnr)
 	-- see :help lsp-zero-keybindings
 	-- to learn the available actions
@@ -35,7 +58,7 @@ lsp.on_attach(function(client, bufnr)
 	vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
 	vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
 	vim.keymap.set("n", "<leader>fm", function() vim.lsp.buf.format { async = true } end, opts)
-	vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+	vim.keymap.set("i", "<leader>hs", function() vim.lsp.buf.signature_help() end, opts)
 end)
 
 lsp.setup()
