@@ -19,7 +19,7 @@ require("nvim-tree").setup({
 		preserve_window_proportions = true,
 	},
 	git = {
-		enable = false,
+		enable = true,
 		ignore = true,
 	},
 	filesystem_watchers = {
@@ -32,7 +32,7 @@ require("nvim-tree").setup({
 	},
 	renderer = {
 		root_folder_label = false,
-		highlight_git = false,
+		highlight_git = true,
 		highlight_opened_files = "none",
 
 		indent_markers = {
@@ -44,7 +44,7 @@ require("nvim-tree").setup({
 				file = true,
 				folder = true,
 				folder_arrow = true,
-				git = false,
+				git = true,
 			},
 
 			glyphs = {
