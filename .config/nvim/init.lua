@@ -14,7 +14,8 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup("plugins")
+-- And install plugins
+require("lazy").setup({ import = "plugins" })
 
 -- Set line numbering and relative numbering as default
 vim.wo.number = true
