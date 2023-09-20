@@ -27,3 +27,6 @@ vim.opt.updatetime = 50
 
 -- Sync vim clipboard w/ system
 vim.o.clipboard = 'unnamedplus'
+
+vim.opt.splitbelow = true
+vim.opt.splitright = true
