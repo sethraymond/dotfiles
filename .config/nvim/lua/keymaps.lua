@@ -21,7 +21,7 @@ vim.keymap.set("v", "<", "<gv", { desc = "Indent and stay in visual mode" })
 vim.keymap.set("v", ">", ">gv", { desc = "Indent and stay in visual mode" })
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move highlighted block up a line" })
-vim.keymap.set("v", "K", ":m '>-2<CR>gv=gv", { desc = "Move highlighted block down a line" })
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move highlighted block down a line" })
 
 vim.keymap.set("v", "<leader>y", "\"+y", { desc = "Yank into system clipboard" })
 
