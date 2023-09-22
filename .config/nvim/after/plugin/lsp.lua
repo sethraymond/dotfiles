@@ -12,7 +12,6 @@ require('mason-lspconfig').setup({
 		"tsserver",
 		--python
 		"pyright",
-		"pylsp",
 		-- C++
 		"clangd",
 		-- Docker
@@ -23,11 +22,24 @@ require('mason-lspconfig').setup({
 	},
 })
 
-lsp.on_attach(function(client, bufnr)
+require('lint').linters_by_ft = {
+	python = {'flake8'},
+}
+
+vim.api.nvim_create_autocmd({ "InsertLeave", "BufWritePost", "BufReadPost" }, {
+	callback = function()
+		require("lint").try_lint()
+	end
+})
+
+lsp.on_attach(function(_, bufnr)
 	-- see :help lsp-zero-keybindings
 	-- to learn the available actions
 	lsp.default_keymaps({ buffer = bufnr })
 end)
+
+lsp.configure('pyright', { })
+
 
 -- (Optional) Configure lua language server for neovim
 require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
