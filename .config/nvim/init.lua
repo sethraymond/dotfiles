@@ -1,5 +1,6 @@
 require("keymaps")
 require("set")
+require("filetype")
 
 -- lazy.nvim boilerplate
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
