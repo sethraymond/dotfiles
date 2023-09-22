@@ -47,9 +47,29 @@ require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 local cmp = require('cmp')
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_mappings = lsp.defaults.cmp_mappings({
-	['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-	['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-	['<C-y>'] = cmp.mapping.confirm({ select = true }),
+	['<Tab>'] = cmp.mapping(function(fallback)
+		if cmp.visible() then
+			local entry = cmp.get_selected_entry()
+			if not entry then
+				cmp.select_next_item({cmp_select})
+			else
+				cmp.confirm()
+			end
+		else
+			fallback()
+		end
+	end, {"i", "s", "c"}),
+	['<CR>'] = cmp.mapping({
+		i = function (fallback)
+			if cmp.visible() and cmp.get_active_entry() then
+				cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+			else
+				fallback()
+			end
+		end,
+		s = cmp.mapping.confirm({ select = true }),
+		c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })
+	}),
 	['<C-Space>'] = cmp.mapping.complete(),
 })
 
