@@ -83,8 +83,15 @@ local function tab_merge(t1, t2)
 	end
 	return t1
 end
+lsp.set_sign_icons({
+	error = "",
+	warning = "",
+	hint = "",
+	information = "",
+	other = "",
+})
 
-lsp.on_attach(function(client, bufnr)
+lsp.on_attach(function(_, bufnr)
 	local opts = { buffer = bufnr, remap = false }
 
 	vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, tab_merge(opts, { desc = "LSP [g]et [d]efinition" }))
