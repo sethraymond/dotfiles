@@ -30,3 +30,7 @@ vim.o.clipboard = 'unnamedplus'
 
 vim.opt.splitbelow = true
 vim.opt.splitright = true
+
+-- Spellchecker
+vim.opt.spelllang = "en_us"
+vim.opt.spell = true

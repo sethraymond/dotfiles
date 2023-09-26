@@ -85,10 +85,9 @@ local function tab_merge(t1, t2)
 end
 lsp.set_sign_icons({
 	error = "",
-	warning = "",
+	warn = "",
 	hint = "",
-	information = "",
-	other = "",
+	info = "",
 })
 
 lsp.on_attach(function(_, bufnr)
