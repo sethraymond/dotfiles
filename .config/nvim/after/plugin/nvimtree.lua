@@ -10,7 +10,8 @@ require("nvim-tree").setup({
 	sync_root_with_cwd = true,
 	update_focused_file = {
 		enable = true,
-		update_root = false,
+		update_root = true,
+		ignore_list = { "COMMIT_EDITMSG", },
 	},
 	view = {
 		adaptive_size = false,
