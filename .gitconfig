@@ -11,3 +11,5 @@
     sclone = clone --recurse-submodules
 [push]
     recurseSubmodules = on-demand
+[init]
+	defaultBranch = main
