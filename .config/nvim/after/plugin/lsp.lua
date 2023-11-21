@@ -16,6 +16,8 @@ require('mason-lspconfig').setup({
 		"clangd",
 		-- Docker
 		"dockerls",
+		-- Rust
+		"rust_analyzer"
 	},
 	handlers = {
 		lsp.default_setup,
