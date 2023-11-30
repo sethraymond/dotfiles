@@ -10,7 +10,7 @@ require("nvim-tree").setup({
 	sync_root_with_cwd = true,
 	update_focused_file = {
 		enable = true,
-		update_root = true,
+		update_root = false,
 		ignore_list = { "COMMIT_EDITMSG", },
 	},
 	view = {
@@ -18,6 +18,8 @@ require("nvim-tree").setup({
 		side = "left",
 		width = 50,
 		preserve_window_proportions = true,
+		number = true,
+		relativenumber = true,
 	},
 	git = {
 		enable = true,
@@ -35,6 +37,7 @@ require("nvim-tree").setup({
 		root_folder_label = false,
 		highlight_git = true,
 		highlight_opened_files = "none",
+		add_trailing = true,
 
 		indent_markers = {
 			enable = false,
