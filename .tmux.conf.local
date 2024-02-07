@@ -341,6 +341,9 @@ tmux_conf_copy_to_os_clipboard=true
 # sync colors between terminal and nvim
 set-option -sa terminal-overrides ",xterm*:Tc"
 
+# Keep server alive after all clients have detached
+set-option -s exit-unattached off
+
 # increase history size
 set -g history-limit 10000
 
