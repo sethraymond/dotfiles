@@ -1,15 +1,15 @@
-local lsp = require('lsp-zero').preset({})
+require("neoconf").setup({})
 
-require('mason').setup({})
+require('mason').setup()
 require('mason-lspconfig').setup({
 	ensure_installed = {
 		-- lua
 		"lua_ls",
 		-- web dev
-		"angularls",
 		"cssls",
 		"html",
-		"tsserver",
+		-- "tsserver",
+		"volar",
 		--python
 		"pyright",
 		-- C++
@@ -18,11 +18,24 @@ require('mason-lspconfig').setup({
 		"dockerls",
 		-- Rust
 		"rust_analyzer"
-	},
-	handlers = {
-		lsp.default_setup,
-	},
+	}
 })
+
+local lspconfig = require('lspconfig')
+require('mason-lspconfig').setup_handlers({
+	function(server_name)
+		local server_config = {}
+		if require("neoconf").get(server_name .. ".disable") then
+			return
+		end
+		if server_name == "volar" then
+			server_config.filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'}
+		end
+		lspconfig[server_name].setup(server_config)
+	end,
+})
+
+local lsp = require('lsp-zero').preset({})
 
 require('lint').linters_by_ft = {
 	python = {'flake8'},
@@ -44,7 +57,7 @@ lsp.configure('pyright', { })
 
 
 -- (Optional) Configure lua language server for neovim
-require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
 
 local cmp = require('cmp')
 local cmp_select = { behavior = cmp.SelectBehavior.Select }

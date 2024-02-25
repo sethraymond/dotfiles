@@ -1,5 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/$USER/.oh-my-zsh"
@@ -74,3 +75,5 @@ wsl_1password_ssh () {
 if [[ -d "/mnt/wsl/" ]]; then
   wsl_1password_ssh
 fi
+
+eval "$(zoxide init --cmd cd zsh)"
