@@ -77,3 +77,8 @@ if [[ -d "/mnt/wsl/" ]]; then
 fi
 
 eval "$(zoxide init --cmd cd zsh)"
+
+if command -v bat &> /dev/null; then
+  export BAT_THEME="TwoDark"
+  alias cat="bat"
+fi
