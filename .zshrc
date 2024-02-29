@@ -79,6 +79,6 @@ fi
 eval "$(zoxide init --cmd cd zsh)"
 
 if command -v bat &> /dev/null; then
-  export BAT_THEME="TwoDark"
+  export BAT_THEME="ansi"
   alias cat="bat"
 fi
