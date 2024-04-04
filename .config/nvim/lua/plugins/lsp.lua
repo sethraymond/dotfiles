@@ -17,4 +17,7 @@ return {
 	{
 		'mfussenegger/nvim-lint',
 	},
+	{
+		'onsails/lspkind.nvim'
+	},
 }
