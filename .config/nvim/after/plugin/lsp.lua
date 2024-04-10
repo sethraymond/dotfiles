@@ -93,7 +93,7 @@ lspconfig.util.default_config = vim.tbl_deep_extend(
 
 local sign = function (opts)
 	vim.fn.sign_define(opts.name, {
-		texth1 = opts.name,
+		texthl = opts.name,
 		text = opts.text,
 		numhl = '',
 	})
