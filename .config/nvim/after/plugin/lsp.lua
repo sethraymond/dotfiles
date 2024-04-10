@@ -1,7 +1,6 @@
 require("neoconf").setup({})
 local lspconfig = require('lspconfig')
 
-
 require('lint').linters_by_ft = {
 	python = {'flake8'},
 }
@@ -134,6 +133,19 @@ local default_handler = function(server)
 	end
 	if server == "volar" then
 		server_config.filetypes = { 'vue', 'typescript', 'javascript' }
+	end
+	if server == 'lua_ls' then
+		server_config.on_init = function (client)
+			client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+				workspace = {
+					checkThirdParty = false,
+					library = {
+						vim.env.VIMRUNTIME
+					}
+				}
+			})
+		end
+		server_config.settings.Lua = {}
 	end
 	lspconfig[server].setup(server_config)
 end
