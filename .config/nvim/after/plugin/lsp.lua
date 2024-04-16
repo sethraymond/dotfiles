@@ -72,7 +72,9 @@ require('mason-lspconfig').setup({
 		-- Docker
 		"dockerls",
 		-- Rust
-		"rust_analyzer"
+		"rust_analyzer",
+		-- Bash
+		"bashls",
 	},
 })
 
