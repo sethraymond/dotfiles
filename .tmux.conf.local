@@ -371,6 +371,21 @@ unbind \%
 # move status line to top
 #set -g status-position top
 
+bind-key "T" run-shell "sesh connect \"$(
+	sesh list | fzf-tmux -p 55%,60% \
+		--header '  ^a all ^t tmux ^g configs ^x zoxide ^d tmux kill ' \
+		--no-sort  --prompt '⚡  ' \
+		--bind 'tab:up,btab:down' \
+		--bind 'ctrl-a:change-prompt(⚡  )+reload(sesh list)' \
+		--bind 'ctrl-t:change-prompt(🪟  )+reload(sesh list -t)' \
+		--bind 'ctrl-g:change-prompt(⚙️  )+reload(sesh list -c)' \
+		--bind 'ctrl-x:change-prompt(📁  )+reload(sesh list -z)' \
+		--bind 'ctrl-d:execute(tmux kill-session -t {})+change-prompt(⚡  )+reload(sesh list)'
+)\""
+
+bind-key x kill-pane # skip "kill-pane 1? (y/n)" prompt
+set -g detach-on-destroy off  # don't exit from tmux when closing a session
+
 # -- tpm -----------------------------------------------------------------------
 
 # while I don't use tpm myself, many people requested official support so here
