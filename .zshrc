@@ -76,9 +76,15 @@ if [[ -d "/mnt/wsl/" ]]; then
   wsl_1password_ssh
 fi
 
-eval "$(zoxide init --cmd cd zsh)"
+if command -v zoxide &> /dev/null; then
+  eval "$(zoxide init --cmd cd zsh)"
+else
+  echo "Missing zoxide"
+fi
 
 if command -v bat &> /dev/null; then
   export BAT_THEME="ansi"
   alias cat="bat"
+else
+  echo "Missing bat"
 fi
