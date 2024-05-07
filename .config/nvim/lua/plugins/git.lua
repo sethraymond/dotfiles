@@ -7,7 +7,7 @@ return {
 		lazy = false,
 	},
 	{
-		"tveskag/nvim-blame-line",
+		"f-person/git-blame.nvim",
 		lazy = false
 	},
 }
