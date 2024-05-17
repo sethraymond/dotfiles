@@ -12,7 +12,7 @@ require'nvim-treesitter.configs'.setup {
 	  "git_rebase",
 	  "gitattributes",
 	  "gitcommit",
-          "gitignore",
+	  "gitignore",
 	  "html",
 	  "http",
 	  "javascript",
