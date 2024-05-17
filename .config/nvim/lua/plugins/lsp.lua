@@ -7,4 +7,5 @@ return {
 	{'L3MON4D3/LuaSnip'},
 	{'mfussenegger/nvim-lint'},
 	{'onsails/lspkind.nvim'},
+	{'folke/neodev.nvim'},
 }

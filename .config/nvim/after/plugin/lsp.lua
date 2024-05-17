@@ -1,4 +1,5 @@
 require("neoconf").setup({})
+require("neodev").setup({})
 local lspconfig = require('lspconfig')
 
 require('lint').linters_by_ft = {
@@ -137,17 +138,13 @@ local default_handler = function(server)
 		server_config.filetypes = { 'vue', 'typescript', 'javascript' }
 	end
 	if server == 'lua_ls' then
-		server_config.on_init = function (client)
-			client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
-				workspace = {
-					checkThirdParty = false,
-					library = {
-						vim.env.VIMRUNTIME
-					}
+		server_config.settings = {
+			Lua = {
+				completion = {
+					callSnippet = "Replace"
 				}
-			})
-		end
-		server_config.settings.Lua = {}
+			}
+		}
 	end
 	lspconfig[server].setup(server_config)
 end
