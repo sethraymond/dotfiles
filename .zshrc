@@ -76,6 +76,15 @@ if [[ -d "/mnt/wsl/" ]]; then
   wsl_1password_ssh
 fi
 
+# Shell integrations
+if [ -f "$HOME/.fzf.zsh" ]; then
+  source $HOME/.fzf.zsh
+else
+  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+  ~/.fzf/install
+  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+fi
+
 if command -v zoxide &> /dev/null; then
   eval "$(zoxide init --cmd cd zsh)"
 else
