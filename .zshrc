@@ -1,22 +1,16 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
 [ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 source "${ZINIT_HOME}/zinit.zsh"
 
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/neovim/bin:$PATH"
-
-zinit snippet OMZL::git.zsh
-
-zinit snippet OMZP::git
-zinit cdclear -q
-
-setopt promptsubst
-
-zi snippet OMZT::agnoster
-
+zinit ice depth=1; zinit light romkatv/powerlevel10k
 zinit ice wait lucid; zinit light zsh-users/zsh-syntax-highlighting
 zinit ice wait lucid; zinit light zsh-users/zsh-completions
 zinit ice wait lucid; zinit light zsh-users/zsh-autosuggestions
@@ -51,11 +45,19 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 export MANPATH="/usr/local/man:$MANPATH"
 
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/neovim/bin:$PATH"
+
 # Preferred editor
 export EDITOR='vim'
 
 # Custom aliases
 source $HOME/.aliases
+if [ -f $HOME/.env ]; then
+  source $HOME/.env
+fi
 
 wsl_1password_ssh () {
   export SSH_AUTH_SOCK=$HOME/.ssh/agent.sock
@@ -101,3 +103,6 @@ if command -v bat &> /dev/null; then
 else
   echo "Missing bat"
 fi
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
