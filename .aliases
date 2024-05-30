@@ -8,3 +8,8 @@ alias findpath='sudo find / -path'
 alias cl='clear && ls'
 alias cll='clear && ll'
 alias vim='nvim'
+
+if [ -d /mnt/wsl ]; then
+    alias ssh='ssh.exe'
+    alias ssh-add='ssh-add.exe'
+fi
