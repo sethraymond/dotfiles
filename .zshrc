@@ -83,3 +83,8 @@ fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Per https://github.com/romkatv/powerlevel10k/issues/1554#issuecomment-1701598955, fixes issues with redraws:
+# _p9k_deschedule_redraw:zle:2: No handler installed for fd 25
+# _p9k_deschedule_redraw:3: file descriptor 25 used by shell, not closed
+unset ZSH_AUTOSUGGEST_USE_ASYNC
