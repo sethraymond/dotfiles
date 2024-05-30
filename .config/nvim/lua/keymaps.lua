@@ -7,8 +7,6 @@ vim.keymap.set("n", "<Esc>", vim.cmd.noh, { desc = "Clear search highlighting" }
 vim.keymap.set("n", "J", "mzJ`z", { desc = "Join lines leaves cursor at beginning of line" })
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Moving down leaves cursor in column" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Moving up leaves cursor in column" })
-vim.keymap.set("n", "<leader>y", "\"+y", { desc = "Yank into system clipboard" })
-vim.keymap.set("n", "<leader>Y", "\"+Y", { desc = "Yank into system clipboard" })
 vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Substitute word under cursor" })
 
@@ -21,8 +19,6 @@ vim.keymap.set("v", ">", ">gv", { desc = "Indent and stay in visual mode" })
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move highlighted block up a line" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move highlighted block down a line" })
-
-vim.keymap.set("v", "<leader>y", "\"+y", { desc = "Yank into system clipboard" })
 
 -- Other great remaps
 vim.keymap.set("x", "<leader>p", "\"_dP", { desc = "Paste without clobbering other registers" })
