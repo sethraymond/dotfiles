@@ -1,10 +1,10 @@
 [user]
     name = Seth Raymond
-
     email = seth.c.raymond@gmail.com
 [core]
     autocrlf = false
     editor = vim
+    sshCommand = "if [ -d /mnt/wsl ]; then CMD='ssh.exe'; else CMD='ssh'; fi; $CMD"
 [alias]
     lg = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
     supdate = submodule update --recursive --init
