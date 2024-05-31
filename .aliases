@@ -10,6 +10,6 @@ alias cll='clear && ll'
 alias vim='nvim'
 
 if [ -d /mnt/wsl ]; then
-    alias ssh='ssh.exe'
-    alias ssh-add='ssh-add.exe'
+    alias ssh='/mnt/c/Windows/System32/OpenSSH/ssh.exe'
+    alias ssh-add='/mnt/c/Windows/System32/OpenSSH/ssh-add.exe'
 fi
