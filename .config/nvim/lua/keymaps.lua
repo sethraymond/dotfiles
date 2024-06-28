@@ -9,6 +9,8 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Moving down leaves cursor in c
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Moving up leaves cursor in column" })
 vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Substitute word under cursor" })
+vim.keymap.set("n", "<leader>sh", function () vim.cmd('split') end, { desc = "[s]plit [h]orizontal"})
+vim.keymap.set("n", "<leader>sv", function () vim.cmd('vsplit') end, { desc = "[s]plit [v]ertical"})
 
 -- Insert mode keymaps
 vim.keymap.set("i", "jk", "<Esc>", { desc = "Exit insert mode" })

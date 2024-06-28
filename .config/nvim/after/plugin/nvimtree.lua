@@ -2,6 +2,7 @@ require("nvim-tree").setup({
 	filters = {
 		dotfiles = false,
 		exclude = { vim.fn.stdpath "config" .. "/lua/custom" },
+		custom = { "^.git$"}
 	},
 	disable_netrw = true,
 	hijack_netrw = true,
@@ -11,11 +12,10 @@ require("nvim-tree").setup({
 	update_focused_file = {
 		enable = true,
 		update_root = false,
-		ignore_list = { "COMMIT_EDITMSG", },
 	},
 	view = {
 		adaptive_size = false,
-		side = "left",
+		side = "right",
 		width = 50,
 		preserve_window_proportions = true,
 		number = true,
