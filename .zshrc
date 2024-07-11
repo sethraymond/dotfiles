@@ -52,25 +52,21 @@ if [ -f $HOME/.env ]; then
 fi
 
 # Shell integrations
-if [ -f "$HOME/.fzf.zsh" ]; then
-  source $HOME/.fzf.zsh
-else
+if ! command -v fzf &> /dev/null; then
   git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-  ~/.fzf/install
-  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 fi
+source ~/.fzf.zsh
 
-if command -v zoxide &> /dev/null; then
-  eval "$(zoxide init --cmd cd zsh)"
-else
-  echo "Missing zoxide"
+if ! command -v zoxide &> /dev/null; then
+  curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 fi
+eval "$(zoxide init --cmd cd zsh)"
 
 if command -v bat &> /dev/null; then
   export BAT_THEME="ansi"
   alias cat="bat"
 else
-  echo "Missing bat"
+  echo "Missing bat - install with package manager, then mkdir -p ~/.local/bin && ln -s /usr/bin/batcat ~/.local/bin/bat"
 fi
 
 if ! command -v oh-my-posh &> /dev/null; then
@@ -83,4 +79,4 @@ eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/oh-my-posh.toml)"
 # Per https://github.com/romkatv/powerlevel10k/issues/1554#issuecomment-1701598955, fixes issues with redraws:
 # _p9k_deschedule_redraw:zle:2: No handler installed for fd 25
 # _p9k_deschedule_redraw:3: file descriptor 25 used by shell, not closed
-unset ZSH_AUTOSUGGEST_USE_ASYNC
+# unset ZSH_AUTOSUGGEST_USE_ASYNC
