@@ -52,7 +52,8 @@ if [ -f $HOME/.env ]; then
 fi
 
 # Shell integrations
-if ! command -v fzf &> /dev/null; then
+# Can't just check fzf command because sourcing .fzf.zsh is what provides the command!
+if [ ! -d "$HOME/.fzf" ]; then
   git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 fi
 source ~/.fzf.zsh
