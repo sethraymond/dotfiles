@@ -31,7 +31,7 @@ if [ -d "$HOME/.local/bin" ] ; then
 fi
 
 if [ -d "/usr/local/go/bin" ] ; then
-    PATH="/usr/local/go/bin:$PATH"
+    PATH="/usr/local/go/bin:$HOME/go/bin:$PATH"
 fi
 
 function sshagent_findsockets {
