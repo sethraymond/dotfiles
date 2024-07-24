@@ -82,12 +82,9 @@ if ! command -v oh-my-posh &> /dev/null; then
   [ ! -d $OH_MY_POSH_INSTALL_DIR ] && mkdir -p "$(dirname $OH_MY_POSH_INSTALL_DIR)"
   curl -s https://ohmyposh/install.sh | bash -s -- -d $OH_MY_POSH_INSTALL_DIR
 fi
-eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/oh-my-posh.toml)"
 
-# Per https://github.com/romkatv/powerlevel10k/issues/1554#issuecomment-1701598955, fixes issues with redraws:
-# _p9k_deschedule_redraw:zle:2: No handler installed for fd 25
-# _p9k_deschedule_redraw:3: file descriptor 25 used by shell, not closed
-# unset ZSH_AUTOSUGGEST_USE_ASYNC
 if ! command -v lazygit &> /dev/null && command -v go &> /dev/null; then
   go install github.com/jesseduffield/lazygit@latest
 fi
+
+eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/oh-my-posh.toml)"
