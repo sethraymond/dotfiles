@@ -39,6 +39,13 @@ export MANPATH="/usr/local/man:$MANPATH"
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+if [ -d "/usr/local/go/bin" ] ; then
+    export PATH="/usr/local/go/bin:$PATH"
+fi
+
+if [ -d "$HOME/go/bin" ] ; then
+    export PATH="$HOME/go/bin:$PATH"
+fi
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/neovim/bin:$PATH"
 
@@ -81,3 +88,6 @@ eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/oh-my-posh.toml)"
 # _p9k_deschedule_redraw:zle:2: No handler installed for fd 25
 # _p9k_deschedule_redraw:3: file descriptor 25 used by shell, not closed
 # unset ZSH_AUTOSUGGEST_USE_ASYNC
+if ! command -v lazygit &> /dev/null && command -v go &> /dev/null; then
+  go install github.com/jesseduffield/lazygit@latest
+fi
