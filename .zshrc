@@ -12,7 +12,7 @@ zinit snippet OMZP::git
 zinit snippet OMZP::sudo
 zinit snippet OMZP::command-not-found
 
-autoload -Uz comptinit && compinit
+autoload -Uz compinit && compinit
 
 zinit cdreplay -q
 
