@@ -16,7 +16,7 @@ config.color_scheme = 'Updated OneDark'
 
 config.font = wezterm.font(
 	'FiraCode Nerd Font',
-	{ weight = 'Medium' }
+	{ weight = 'Regular' }
 )
 config.font_size = 10.0
 config.freetype_load_flags = 'NO_HINTING'
