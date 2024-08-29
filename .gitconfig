@@ -3,7 +3,7 @@
     email = seth.c.raymond@gmail.com
 [core]
     autocrlf = false
-    editor = vim
+    editor = nvim
     sshCommand = "if [ -d /mnt/wsl ]; then CMD='/mnt/c/Windows/System32/OpenSSH/ssh.exe'; else CMD='ssh'; fi; $CMD"
 [alias]
     lg = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
@@ -14,5 +14,10 @@
     recurseSubmodules = check
 [init]
     defaultBranch = main
-[includeIf "gitdir:/data/devspace/"]
+[includeIf "gitdir:~/devspace/"]
     path = ~/.work.gitconfig
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

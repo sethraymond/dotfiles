@@ -1,2 +1,9 @@
 [user]
     email = seth.raymond@matrixspace.com
+    signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKZc3XmJ5UQ8JHb2dw8f15tUUGoYjGN+dn4SCwMXfDVI
+[gpg]
+    format = ssh
+[gpg "ssh"]
+    program = "/opt/1Password/op-ssh-sign"
+[commit]
+    gpgsign = true
