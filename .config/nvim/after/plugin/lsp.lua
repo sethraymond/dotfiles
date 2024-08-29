@@ -94,17 +94,28 @@ lspconfig.util.default_config = vim.tbl_deep_extend(
 	lsp_defaults
 )
 
-local sign = function (opts)
-	vim.fn.sign_define(opts.name, {
-		texthl = opts.name,
-		text = opts.text,
-		numhl = '',
-	})
-end
-sign({name = 'DiagnosticSignError', text = ""})
-sign({name = 'DiagnosticSignWarn', text = ""})
-sign({name = 'DiagnosticSignHint', text = ""})
-sign({name = 'DiagnosticSignInfo', text = ""})
+vim.diagnostic.config({
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = "",
+			[vim.diagnostic.severity.WARN] = "",
+			[vim.diagnostic.severity.HINT] = "",
+			[vim.diagnostic.severity.INFO] = "",
+		},
+		texthl = {
+			[vim.diagnostic.severity.ERROR] = 'DiagnosticSignError',
+			[vim.diagnostic.severity.WARN] = 'DiagnosticSignWarn',
+			[vim.diagnostic.severity.HINT] = 'DiagnosticSignHint',
+			[vim.diagnostic.severity.INFO] = 'DiagnosticSignInfo',
+		},
+		numhl = {
+			[vim.diagnostic.severity.ERROR] = '',
+			[vim.diagnostic.severity.WARN] = '',
+			[vim.diagnostic.severity.HINT] = '',
+			[vim.diagnostic.severity.INFO] = '',
+		}
+	},
+})
 
 local group = vim.api.nvim_create_augroup('user_cmds', {clear = true})
 vim.api.nvim_create_autocmd('User', {
