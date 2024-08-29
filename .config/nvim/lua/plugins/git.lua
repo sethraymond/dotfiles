@@ -21,9 +21,7 @@ return {
 		},
 		dependencies = {
 			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim"
 		},
-		keys = {
-			{ "<leader>lg", "<cmd>LazyGit<cr>", desc = "[l]azy[g]it"}
-		}
 	}
 }
