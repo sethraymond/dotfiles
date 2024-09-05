@@ -64,7 +64,7 @@ require('mason-lspconfig').setup({
 		-- web dev
 		"cssls",
 		"html",
-		"tsserver",
+		"ts_ls",
 		"volar",
 		--python
 		"pyright",
