@@ -7,3 +7,4 @@
     program = "/opt/1Password/op-ssh-sign"
 [commit]
     gpgsign = true
+

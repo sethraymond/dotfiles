@@ -59,7 +59,7 @@ if [ -f $HOME/.env ]; then
 fi
 
 # Shell integrations
-if ! command -v fzf &> /dev/null; then
+if [ ! -d ${HOME}/.fzf ]; then
   git clone --depth 1 https://github.com/junegunn/fzf.git ${HOME}/.fzf
   ${HOME}/.fzf/install --no-update-rc --no-key-bindings --no-completion --no-bash --no-zsh --no-fish
 fi
