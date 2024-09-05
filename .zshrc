@@ -59,11 +59,11 @@ if [ -f $HOME/.env ]; then
 fi
 
 # Shell integrations
-# Can't just check fzf command because sourcing .fzf.zsh is what provides the command!
-if [ ! -d "$HOME/.fzf" ]; then
-  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+if ! command -v fzf &> /dev/null; then
+  git clone --depth 1 https://github.com/junegunn/fzf.git ${HOME}/.fzf
+  ${HOME}/.fzf/install --no-update-rc --no-key-bindings --no-completion --no-bash --no-zsh --no-fish
 fi
-source ~/.fzf.zsh
+source ${HOME}/.fzf.zsh
 
 if ! command -v zoxide &> /dev/null; then
   curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
@@ -79,15 +79,23 @@ fi
 
 if ! command -v oh-my-posh &> /dev/null; then
   OH_MY_POSH_INSTALL_DIR="${HOME}/.local/bin/oh-my-posh"
-  [ ! -d $OH_MY_POSH_INSTALL_DIR ] && mkdir -p "$(dirname $OH_MY_POSH_INSTALL_DIR)"
-  curl -s https://ohmyposh/install.sh | bash -s -- -d $OH_MY_POSH_INSTALL_DIR
+  if [ ! -d $OH_MY_POSH_INSTALL_DIR ]; then
+    mkdir -p ${OH_MY_POSH_INSTALL_DIR}
+  fi
+  curl -s https://ohmyposh.dev/install.sh | bash -s -- -d $OH_MY_POSH_INSTALL_DIR
 fi
+export PATH=$PATH:$OH_MY_POSH_INSTALL_DIR
 
 if ! command -v lazygit &> /dev/null && command -v go &> /dev/null; then
   go install github.com/jesseduffield/lazygit@latest
 fi
 
-export NVM_DIR="$HOME/.nvm"
+if [ -d "/usr/local/share/nvm" ]; then
+  NVM_DIR="/usr/local/share/nvm"
+else
+  NVM_DIR="${HOME}/.nvm"
+fi
+export NVM_DIR
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 

@@ -103,4 +103,4 @@ sshagent_init
 #GPG_TTY=$(tty)
 #export GPG_TTY
 export PATH=$PATH
-export SSH_AUTH_SOCK=~/.1password/agent.sock
+export SSH_AUTH_SOCK=${HOME}/.1password/agent.sock
