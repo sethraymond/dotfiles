@@ -16,6 +16,8 @@
     defaultBranch = main
 [includeIf "gitdir:~/devspace/"]
     path = ~/.work.gitconfig
+[includeIf "gitdir:/workspaces/"]
+    path = ~/.work.gitconfig
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
