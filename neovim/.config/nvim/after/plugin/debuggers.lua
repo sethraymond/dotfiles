@@ -15,6 +15,31 @@ require("neodev").setup({
 })
 
 local dap, dapui = require("dap"), require("dapui")
+dap.adapters.cppdbg = {
+	id = 'cppdbg',
+	type = 'executable',
+	command = os.getenv('HOME') .. '/.local/share/nvim/mason/bin/OpenDebugAD7'
+}
+
+dap.configurations.cpp = {
+	{
+		name = "Launch file",
+		type = "cppdbg",
+		request = "launch",
+		program = function()
+			return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+		end,
+		cwd = "${workspaceFolder}",
+		stopAtEntry = true,
+		setupCommands = {
+			{
+				text = '-enable-pretty-printing',
+				description = 'enable pretty printing',
+				ignoreFailures = false,
+			},
+		},
+	},
+}
 dapui.setup()
 dap.listeners.before.attach.dapui_config = function()
 	dapui.open()
