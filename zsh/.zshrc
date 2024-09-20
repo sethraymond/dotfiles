@@ -60,13 +60,13 @@ fi
 
 # Shell integrations
 if [ ! -d ${HOME}/.fzf ]; then
-  git clone --depth 1 https://github.com/junegunn/fzf.git ${HOME}/.fzf
-  ${HOME}/.fzf/install --no-update-rc --no-key-bindings --no-completion --no-bash --no-zsh --no-fish
+  git clone --depth 1 https://github.com/junegunn/fzf.git ${HOME}/.fzf > /dev/null 2>&1
+  ${HOME}/.fzf/install --no-update-rc --no-key-bindings --no-completion --no-bash --no-zsh --no-fish > /dev/null 2>&1
 fi
 source ${HOME}/.fzf.zsh
 
 if ! command -v zoxide &> /dev/null; then
-  curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+  curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh > /dev/null 2>&1
 fi
 eval "$(zoxide init --cmd cd zsh)"
 
@@ -82,7 +82,7 @@ if ! command -v oh-my-posh &> /dev/null; then
   if [ ! -d $OH_MY_POSH_INSTALL_DIR ]; then
     mkdir -p ${OH_MY_POSH_INSTALL_DIR}
   fi
-  curl -s https://ohmyposh.dev/install.sh | bash -s -- -d $OH_MY_POSH_INSTALL_DIR
+  curl -s https://ohmyposh.dev/install.sh | bash -s -- -d $OH_MY_POSH_INSTALL_DIR > /dev/null 2>&1
 fi
 export PATH=$PATH:$OH_MY_POSH_INSTALL_DIR
 
