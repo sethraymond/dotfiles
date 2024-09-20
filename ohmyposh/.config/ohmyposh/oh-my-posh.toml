@@ -16,6 +16,12 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
   template = " {{ .Context }} "
 
   [[blocks.segments]]
+  type = "python"
+  style = "plain"
+  foreground = "yellow"
+  template = "  "
+
+  [[blocks.segments]]
     type = 'path'
     style = 'plain'
     foreground = 'blue'
