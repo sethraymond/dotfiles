@@ -8,6 +8,7 @@ alias findpath='sudo find / -path'
 alias cl='clear && ls'
 alias cll='clear && ll'
 alias vim='nvim'
+alias tmp="cd (mktemp -d)"
 
 if [ -d /mnt/wsl ]; then
     alias ssh='/mnt/c/Windows/System32/OpenSSH/ssh.exe'
