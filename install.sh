@@ -4,13 +4,29 @@
 
 set -e
 
+pushd () {
+    command pushd "$@" > /dev/null
+}
+
+popd () {
+    command popd "$@" > /dev/null
+}
+
 sudo apt-get install -y stow
 
-declare -a common_preinstalled_files=("${HOME}/.zshrc" "${HOME}/.zprofile" "${HOME}/.bashrc" "${HOME}/.profile" "${HOME}/.gitconfig")
-for f in "${arr[@]}"
+#declare -a common_preinstalled_files=("${HOME}/.zshrc" "${HOME}/.zprofile" "${HOME}/.bashrc" "${HOME}/.profile" "${HOME}/.gitconfig")
+#for f in "${arr[@]}"
+#do
+#    if [ ! -L "$f" ]; then  # if it's not a link, it's definitely not owned by stow
+#        mv "$f" "${f}.old"
+#    fi
+#done
+
+basedir=`pwd`
+declare -a modules=("$basedir/bash" "$basedir/bat" "$basedir/fzf" "$basedir/git" "$basedir/lazygit" "$basedir/neovim" "$basedir/ohmyposh" "$basedir/shell" "$basedir/tmux" "$basedir/vim" "$basedir/wezterm" "$basedir/zsh")
+for module in "${modules[@]}"
 do
-    if [! test -L $f]; then  # if it's not a link, it's probably not owned by stow
-        rm $f
-    fi
+    pushd $module
+    stow -d $module -t "$HOME" stow
+    popd
 done
-stow bash bat fzf git lazygit neovim ohmyposh shell tmux zsh
