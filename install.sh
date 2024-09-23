@@ -41,6 +41,8 @@ do
     fi
 done
 
+mkdir -p "${HOME}/.config"
+
 basedir=`pwd`
 declare -a modules=("bash" "bat" "fzf" "git" "lazygit" "neovim" "ohmyposh" "shell" "tmux" "vim" "wezterm" "zsh")
 for module in "${modules[@]}"
