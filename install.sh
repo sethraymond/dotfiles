@@ -4,6 +4,9 @@
 
 set -e
 
+ERROR_APP_NAME=$0
+base_dir=$( cd -- "$(dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd)
+
 function die()
 {
     echo "${ERROR_APP_NAME}: ${1}" 1>&2
@@ -12,25 +15,28 @@ function die()
 
 function process_module()
 {
-    if [[ ! -d "${base_dir}/modules/$1" ]]; then
+    if [[ ! -d "${base_dir}/$1" ]]; then
         die "Unable to locate module '$1'"
     fi
 
-    if [[ -d "${base_dir}/modules/$1/stow" ]]; then
-        stow -v -d "${base_dir}/modules/$1/stow" -t "${HOME}" stow
+    if [[ -d "${base_dir}/$1/stow" ]]; then
+        stow -v -d "${base_dir}/$1" -t "${HOME}" stow
     fi
 
-    if [[ -f "${base_dir}/modules/$1/setup.sh" ]]; then
-        ${base_dir}/modules/$1/setup.sh
+    if [[ -f "${base_dir}/$1/setup.sh" ]]; then
+        ${base_dir}/$1/setup.sh
     fi
 }
 
-apt-get install -y stow
+if ! command -v stow &> /dev/null ; then
+    apt-get install -y stow
+fi
 
 declare -a common_preinstalled_files=("${HOME}/.zshrc" "${HOME}/.zprofile" "${HOME}/.bashrc" "${HOME}/.profile" "${HOME}/.gitconfig")
-for f in "${arr[@]}"
+for f in "${common_preinstalled_files[@]}"
 do
     if [ ! -L "$f" ] && [ -e "$f" ]; then  # if it's not a link, it's definitely not owned by stow
+        echo "Found $f, saving off as ${f}.old..."
         mv "$f" "${f}.old"
     fi
 done
