@@ -2,8 +2,8 @@
 
 set -e
 
-apt-get install -y git
-git clone git@github.com:sethraymond/dotfiles "$HOME/.dotfiles"
+apt-get install -y git stow
+git clone https://github.com/sethraymond/dotfiles.git "$HOME/.dotfiles"
 
 pushd "$HOME/.dotfiles"
 ./install.sh

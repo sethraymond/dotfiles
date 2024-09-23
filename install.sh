@@ -28,10 +28,6 @@ function process_module()
     fi
 }
 
-if ! command -v stow &> /dev/null ; then
-    apt-get install -y stow
-fi
-
 declare -a common_preinstalled_files=("${HOME}/.zshrc" "${HOME}/.zprofile" "${HOME}/.bashrc" "${HOME}/.profile" "${HOME}/.gitconfig")
 for f in "${common_preinstalled_files[@]}"
 do
