@@ -1,2 +1,6 @@
 gui:
   nerdFontsVersion: "3"
+keybinding:
+  commits:
+    moveDownCommit: 'J'
+    moveUpCommit: 'K'
