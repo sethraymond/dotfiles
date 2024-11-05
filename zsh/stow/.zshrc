@@ -3,15 +3,20 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 source "${ZINIT_HOME}/zinit.zsh"
 
+AUTOENV_FILE_ENTER=.autoenv.zsh
+AUTOENV_FILE_LEAVE=.autoenv.zsh
+
 zinit ice wait lucid; zinit light zsh-users/zsh-syntax-highlighting
 zinit ice wait lucid; zinit light zsh-users/zsh-completions
 zinit ice wait lucid; zinit light zsh-users/zsh-autosuggestions
 zinit ice wait lucid; zinit light Aloxaf/fzf-tab
+zinit ice wait lucid; zinit light Tarrasch/zsh-autoenv
 
 zinit snippet OMZP::git
 zinit snippet OMZP::sudo
 zinit snippet OMZP::command-not-found
 
+fpath+=~/.zfunc
 autoload -Uz compinit && compinit
 
 zinit cdreplay -q
@@ -88,6 +93,11 @@ export PATH=$PATH:$OH_MY_POSH_INSTALL_DIR
 
 if ! command -v lazygit &> /dev/null && command -v go &> /dev/null; then
   go install github.com/jesseduffield/lazygit@latest
+fi
+
+if command -v pipenv &> /dev/null; then
+  eval "$(_PIPENV_COMPLETE=zsh_source pipenv)"
+  export PIPENV_VENV_IN_PROJECT=1
 fi
 
 if [ -d "/usr/local/share/nvm" ]; then
