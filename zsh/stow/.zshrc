@@ -59,6 +59,9 @@ export EDITOR='vim'
 
 # Custom aliases
 source $HOME/.aliases
+if [ -f $HOME/.work_aliases ]; then
+  source $HOME/.work_aliases
+fi
 if [ -f $HOME/.env ]; then
   source $HOME/.env
 fi

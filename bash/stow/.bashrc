@@ -100,6 +100,10 @@ if [ -f ~/.aliases ]; then
 	. ~/.aliases
 fi
 
+if [ -f ~/.work_aliases ]; then
+	. ~/.work_aliases
+fi
+
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 export NVM_DIR="$HOME/.nvm"
