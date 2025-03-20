@@ -1,5 +1,4 @@
 require("neoconf").setup({})
-require("neodev").setup({})
 local lspconfig = require('lspconfig')
 
 require('lint').linters_by_ft = {
@@ -26,9 +25,10 @@ cmp.setup {
 		end,
 	},
 	formatting = {
+		expandable_indicator = true,
+		fields = cmp.ItemField.menu,
 		format = lspkind.cmp_format({
 		  mode = "symbol",
-
 		  max_width = 50,
 		  symbol_map = { Copilot = "" }
 		})
@@ -58,14 +58,15 @@ cmp.setup {
 
 require('mason').setup()
 require('mason-lspconfig').setup({
+	automatic_installation = true,
 	ensure_installed = {
 		-- lua
 		"lua_ls",
 		-- web dev
 		"cssls",
 		"html",
-		"ts_ls",
 		"volar",
+		"tsserver",
 		--python
 		"pyright",
 		-- C++
@@ -130,8 +131,8 @@ vim.api.nvim_create_autocmd('User', {
 		bufmap("n", "H", function() vim.lsp.buf.hover() end, "LSP [H]over")
 		bufmap("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, "[v]iew [w]orkspace [s]ymbol")
 		bufmap("n", "<leader>vd", function() vim.diagnostic.open_float() end, "[v]iew [d]iagnostic")
-		bufmap("n", "[d", function() vim.diagnostic.goto_next() end, "Next [d]iagnostic")
-		bufmap("n", "]d", function() vim.diagnostic.goto_prev() end, "Prev [d]iagnostic")
+		bufmap("n", "[d", function() vim.diagnostic.jump({count=1, float=true}) end, "Next [d]iagnostic")
+		bufmap("n", "]d", function() vim.diagnostic.jump({count=-1, float=true}) end, "Prev [d]iagnostic")
 		bufmap("n", "<leader>vca", function() vim.lsp.buf.code_action() end, "[v]iew [c]ode [a]ction")
 		bufmap("n", "<leader>vrr", function() vim.lsp.buf.references() end, "[v]iew code [r]eferences")
 		bufmap("n", "<leader>vrn", function() vim.lsp.buf.rename() end, "[r]e[n]ame")
@@ -148,6 +149,9 @@ local default_handler = function(server)
 	if server == "volar" then
 		server_config.filetypes = { 'vue', 'typescript', 'javascript' }
 	end
+	if server == "tsserver" then
+		server = "ts_ls"
+	end
 	if server == 'lua_ls' then
 		server_config.settings = {
 			Lua = {
@@ -162,8 +166,8 @@ end
 
 require('mason-lspconfig').setup_handlers({
 	default_handler,
-	['tsserver'] = function()
-		lspconfig.tsserver.setup({
+	['ts_ls'] = function()
+		lspconfig.ts_ls.setup({
 			settings = {
 				completions = {
 					completeFunctionCalls = true
