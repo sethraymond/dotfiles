@@ -5,7 +5,7 @@
     autocrlf = false
     editor = nvim
     sshCommand = "if [ -d /mnt/wsl ]; then CMD='/mnt/c/Windows/System32/OpenSSH/ssh.exe'; else CMD='ssh'; fi; $CMD"
-	excludesfile = /home/seth/.gitignore_global
+    excludesfile = /home/seth/.gitignore_global
 [alias]
     lg = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
     supdate = submodule update --recursive --init
@@ -13,14 +13,45 @@
     pushf = push --force-with-lease
 [push]
     recurseSubmodules = check
+    default = simple
+    autoSetupRemote = true
 [init]
     defaultBranch = main
 [includeIf "gitdir:~/devspace/"]
     path = ~/.work.gitconfig
 [includeIf "gitdir:/workspaces/"]
     path = ~/.work.gitconfig
+[column]
+    ui = auto
+[branch]
+    sort = -committerdate
+[tag]
+    sort = version:refname
+[diff]
+    algorithm = histogram
+    colorMoved = plain
+    mnemonicPrefix = true
+    renames = true
+[fetch]
+    prune = true
+    pruneTags = true
+[help]
+    autocorrect = prompt
+[rerere]
+    enabled = true
+    autoupdate = true
+[rebase]
+    autoSquash = true
+    autoStash = true
+    updateRefs = true
+[pull]
+    rebase = true
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[url "https://invent.kde.org/"]
+	insteadOf = kde:
+[url "ssh://git@invent.kde.org/"]
+	pushInsteadOf = kde:
