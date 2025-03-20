@@ -18,3 +18,5 @@ vim.opt.rtp:prepend(lazypath)
 
 -- And install plugins
 require("lazy").setup({ import = "plugins" })
+
+vim.opt.rtp:append(vim.fn.stdpath('data') .. "/site")
