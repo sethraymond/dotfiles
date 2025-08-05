@@ -103,6 +103,10 @@ if command -v pipenv &> /dev/null; then
   export PIPENV_VENV_IN_PROJECT=1
 fi
 
+if command -v op &> /dev/null; then
+  eval "$(op completion zsh)"; compdef _op op
+fi
+
 if [ -d "/usr/local/share/nvm" ]; then
   NVM_DIR="/usr/local/share/nvm"
 else

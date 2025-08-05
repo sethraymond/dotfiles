@@ -66,7 +66,6 @@ require('mason-lspconfig').setup({
 		"cssls",
 		"html",
 		"volar",
-		"tsserver",
 		--python
 		"pyright",
 		-- C++
@@ -166,13 +165,4 @@ end
 
 require('mason-lspconfig').setup_handlers({
 	default_handler,
-	['ts_ls'] = function()
-		lspconfig.ts_ls.setup({
-			settings = {
-				completions = {
-					completeFunctionCalls = true
-				}
-			}
-		})
-	end
 })
