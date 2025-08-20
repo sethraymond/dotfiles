@@ -5,15 +5,6 @@ require("neotest").setup({
 	}
 })
 
-require("neodev").setup({
-	library = {
-		plugins = {
-			"nvim-dap-ui"
-		},
-		types = true,
-	}
-})
-
 local dap, dapui = require("dap"), require("dapui")
 dap.adapters.cppdbg = {
 	id = 'cppdbg',

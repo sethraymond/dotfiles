@@ -1,13 +1,35 @@
 return {
-	{'neovim/nvim-lspconfig'},
-	{'williamboman/mason.nvim'},
-	{'williamboman/mason-lspconfig.nvim'},
-	{'hrsh7th/nvim-cmp'},
-	{'hrsh7th/cmp-nvim-lsp'},
+	{
+		'mason-org/mason-lspconfig.nvim',
+		opts = {},
+		dependencies = {
+			{ 'mason-org/mason.nvim', opts = {} },
+			'neovim/nvim-lspconfig',
+		},
+	},
 	{'L3MON4D3/LuaSnip'},
 	{'mfussenegger/nvim-lint'},
 	{'onsails/lspkind.nvim'},
-	{'folke/neodev.nvim'},
+	{
+		'folke/lazydev.nvim',
+		ft = "lua",
+		opts = {
+			library = {
+				{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+			},
+		},
+	},
+	{
+		'hrsh7th/nvim-cmp',
+		opts = function(_, opts)
+			opts.sources = opts.sources or {}
+			table.insert(opts.sources, {
+				name = "lazydev",
+				group_index = 0,
+			})
+		end,
+	},
+	{'hrsh7th/cmp-nvim-lsp'},
 	{
 	  "linux-cultist/venv-selector.nvim",
 	  dependencies = {
