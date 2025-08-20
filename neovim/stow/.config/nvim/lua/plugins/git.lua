@@ -12,6 +12,7 @@ return {
 	},
 	{
 		"kdheepak/lazygit.nvim",
+		lazy = true,
 		cmd = {
 			"LazyGit",
 			"LazyGitConfig",
@@ -21,7 +22,9 @@ return {
 		},
 		dependencies = {
 			"nvim-lua/plenary.nvim",
-			"nvim-telescope/telescope.nvim"
 		},
-	}
+		keys = {
+			{ "<leader>lg", "<cmd>LazyGit<cr>", desc = "[L]azy[G]it" },
+		},
+	},
 }
