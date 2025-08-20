@@ -361,6 +361,10 @@ bind -n M-- split-window -v
 unbind '"'
 unbind \%
 
+# OSC 52 support
+set -s set-clipboard on
+set -g allow-passthrough
+
 # replace C-b by C-a instead of using both prefixes
 # set -gu prefix2
 # unbind C-a
