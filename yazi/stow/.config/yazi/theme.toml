@@ -1,0 +1,28 @@
+[theme]
+name = "onedark"
+
+[ui]
+# Core colors
+background = "#1e2127"   # (30,33,39)
+foreground = "#abb2bf"   # (171,178,191)
+cursor     = "#abb2bf"
+selection  = "#3b4046"
+
+# Status / highlights
+status_active   = "#61afef"   # Blue
+status_inactive = "#5c6370"   # Dim gray
+status_error    = "#e06c75"   # Red
+status_success  = "#98c379"   # Green
+status_warning  = "#d19a66"   # Yellow
+
+# Border & highlights
+border     = "#5c6370"
+highlight  = "#c678dd"   # Magenta
+info       = "#56b6c2"   # Cyan
+hint       = "#d19a66"   # Yellow/Orange
+
+# Optional UI extras (depends on Yazi version)
+# e.g. used in preview or tab bars
+directory  = "#61afef"
+symlink    = "#56b6c2"
+executable = "#98c379"

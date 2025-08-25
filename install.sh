@@ -40,8 +40,33 @@ done
 mkdir -p "${HOME}/.config"
 
 basedir=`pwd`
-declare -a modules=("bash" "bat" "fzf" "git" "lazygit" "neovim" "ohmyposh" "shell" "tmux" "vim" "wezterm" "zsh")
+declare -a modules=("bash" "bat" "fzf" "git" "lazygit" "neovim" "ohmyposh" "shell" "vim" "yazi" "zsh")
 for module in "${modules[@]}"
 do
     process_module $module
 done
+
+declare -a desktop_modules=("fontconfig" "fuzzel" "kitty" "niri" "swaylock" "tmux" "waybar")
+desktop=false
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --desktop)
+            desktop=true
+            shift
+            ;;
+        --)
+            shift
+            break
+            ;;
+        *)
+            break
+            ;;
+    esac
+done
+
+if $desktop; then
+    for module in "${desktop_modules[@]}"
+    do
+        process_module $module
+    done
+fi

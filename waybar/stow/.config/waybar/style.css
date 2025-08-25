@@ -1,0 +1,66 @@
+* {
+  font-family: "FiraCode Nerd Font", monospace;
+  font-size: 13px;
+  min-height: 8px;
+}
+
+/* Bar background & text */
+window#waybar {
+  background: #282c34;
+  color: #abb2bf;
+  border-bottom: 1px solid #3e4452;
+}
+
+/* Modules padding */
+#clock, #cpu, #memory, #network, #pulseaudio, #pulseaudio.mic {
+  padding: 0 3px;
+}
+
+#pulseaudio, #pulseaudio.mic {
+  padding: 0 5px;
+}
+
+/* Tooltip styling with centered text */
+tooltip {
+  background: #21252b;
+  border: 1px solid #3e4452;
+  color: #abb2bf;
+}
+
+/* Module-specific accents (Konsole One Dark palette) */
+#network {
+  color: #61afef; /* blue */
+}
+#pulseaudio, #pulseaudio.mic {
+  color: #c678dd; /* magenta */
+}
+#clock {
+  color: #98c379; /* green */
+}
+
+/* CPU & memory state colors */
+#cpu.warning, #memory.warning {
+  color: #e5c07b; /* yellow */
+}
+#cpu.critical, #memory.critical {
+  color: #e06c75; /* red */
+}
+
+/* Indicators with fixed width */
+#cpu, #memory, #pulseaudio {
+  min-width: 70px;
+}
+
+#battery {
+  color: #98c379; /* One Dark green */
+  padding: 0 10px;
+}
+
+#battery.charging {
+  color: #61afef; /* Blue when charging */
+}
+
+#battery.warning,
+#battery.critical {
+  color: #e06c75; /* Red when low */
+}
