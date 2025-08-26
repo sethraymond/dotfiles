@@ -112,6 +112,28 @@ output "Samsung Electric Company LS27B61x H4TW800146" {
     position x=4480 y=-1050
 }
 
+// Home office
+output "Acer Technologies XB271HU T4TAA0018500" {
+  mode "2560x1440@59.951"
+  scale 1
+  transform "normal"
+  position x=1080 y=0
+}
+
+output "Dell Inc. DELL U2417H XVNNT89FAQNL" {
+  mode "1920x1080@60.000"
+  scale 1
+  transform "270"
+  position x=0 y=-250
+}
+
+output "Dell Inc. DELL U2717D 67YGV96O665U" {
+  mode "2560x1440@59.951"
+  position x=3640 y=0
+  scale 1
+  transform "normal"
+}
+
 // Settings that influence how windows are positioned and sized.
 // Find more information on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
