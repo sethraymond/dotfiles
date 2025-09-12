@@ -85,14 +85,12 @@ else
   echo "Missing bat - install with package manager, then mkdir -p ~/.local/bin && ln -s /usr/bin/batcat ~/.local/bin/bat"
 fi
 
-if ! command -v oh-my-posh &> /dev/null; then
-  OH_MY_POSH_INSTALL_DIR="${HOME}/.local/bin/oh-my-posh"
-  if [ ! -d $OH_MY_POSH_INSTALL_DIR ]; then
-    mkdir -p ${OH_MY_POSH_INSTALL_DIR}
-  fi
+OH_MY_POSH_INSTALL_DIR="${HOME}/.local/bin/oh-my-posh"
+export PATH=$PATH:$OH_MY_POSH_INSTALL_DIR
+if [ ! -d "$OH_MY_POSH_INSTALL_DIR" ]; then
+  mkdir -p ${OH_MY_POSH_INSTALL_DIR}
   curl -s https://ohmyposh.dev/install.sh | bash -s -- -d $OH_MY_POSH_INSTALL_DIR > /dev/null 2>&1
 fi
-export PATH=$PATH:$OH_MY_POSH_INSTALL_DIR
 
 if ! command -v lazygit &> /dev/null && command -v go &> /dev/null; then
   go install github.com/jesseduffield/lazygit@latest
