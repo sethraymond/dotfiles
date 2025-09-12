@@ -28,9 +28,11 @@ tooltip {
 }
 
 /* Module-specific accents (Konsole One Dark palette) */
-#network {
+#custom-network {
+  padding: 0 3px;
   color: #61afef; /* blue */
 }
+
 #pulseaudio, #pulseaudio.mic {
   color: #c678dd; /* magenta */
 }
@@ -63,4 +65,9 @@ tooltip {
 #battery.warning,
 #battery.critical {
   color: #e06c75; /* Red when low */
+}
+
+#custom-notification {
+  padding: 0 8px;
+  border-radius: 6px;
 }

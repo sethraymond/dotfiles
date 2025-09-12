@@ -1,0 +1,24 @@
+[[session]]
+name = "dopplerspace"
+path = "~/devspace/dopplerspace"
+startup_command = "devcontainer up --remove-existing-container --workspace-folder ."
+
+[[session]]
+name = "ds-simple-config"
+path = "~/devspace/ds-simple-config"
+startup_command = "devcontainer up --remove-existing-container --workspace-folder ."
+
+[[session]]
+name = "ms-pyfbs"
+path = "~/devspace/ms-pyfbs"
+startup_command = "devcontainer up --remove-existing-container --workspace-folder ."
+
+[[session]]
+name = "ms-middleware"
+path = "~/devspace/ms-middleware"
+startup_command = "devcontainer up --remove-existing-container --workspace-folder ."
+
+[[session]]
+name = "ds-linux"
+path = "~/devspace/ds-linux"
+startup_command = "nvim ."

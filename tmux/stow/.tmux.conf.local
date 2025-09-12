@@ -338,6 +338,8 @@ tmux_conf_copy_to_os_clipboard=true
 # -- user customizations -------------------------------------------------------
 # this is the place to override or undo settings
 
+set-option -g update-environment
+
 # sync colors between terminal and nvim
 set-option -sa terminal-overrides ",xterm*:Tc"
 
@@ -381,7 +383,7 @@ bind-key "T" run-shell "sesh connect \"$(
 		--no-sort  --prompt '⚡  ' \
 		--bind 'tab:up,btab:down' \
 		--bind 'ctrl-a:change-prompt(⚡  )+reload(sesh list)' \
-		--bind 'ctrl-t:change-prompt(🪟  )+reload(sesh list -t)' \
+		--bind 'ctrl-t:change-prompt( )+reload(sesh list -t)' \
 		--bind 'ctrl-g:change-prompt(⚙️  )+reload(sesh list -c)' \
 		--bind 'ctrl-x:change-prompt(📁  )+reload(sesh list -z)' \
 		--bind 'ctrl-d:execute(tmux kill-session -t {})+change-prompt(⚡  )+reload(sesh list)'
@@ -389,6 +391,8 @@ bind-key "T" run-shell "sesh connect \"$(
 
 bind-key x kill-pane # skip "kill-pane 1? (y/n)" prompt
 set -g detach-on-destroy off  # don't exit from tmux when closing a session
+
+set-hook -g client-attached 'run-shell "for var in WAYLAND_DISPLAY XDG_RUNTIME_DIR; do [ -n \${!var} ] && tmux set-environment -g $var \${!var}; done"'
 
 # -- tpm -----------------------------------------------------------------------
 

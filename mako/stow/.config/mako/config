@@ -1,0 +1,9 @@
+[mode=default]
+font=monospace 11
+background-color=#1e2127
+text-color=#abb2bf
+default-timeout=5000
+invisible=false
+
+[mode=dnd]
+invisible=true
