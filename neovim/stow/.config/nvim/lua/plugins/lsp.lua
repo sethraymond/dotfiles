@@ -50,4 +50,33 @@ return {
 		}
 	  },
 	},
+	{
+		"stevearc/conform.nvim",
+		opts = {
+			formatters_by_ft = {
+				lua = { "stylua" },
+				python = { "isort", "black" },
+				c = { "clang-format" },
+				cpp = { "clang-format" },
+			},
+			format_on_save = { timeout_ms = 500 },
+			formatters = {
+				clang_format = {
+					prepend_args = { '--style=file' },
+				},
+			},
+		},
+		event = { "BufWritePre" },
+		cmd = { "ConformInfo" },
+		keys = {
+			{
+				"<leader>fm",
+				function()
+					require("conform").format({async = true})
+				end,
+				mode = "",
+				desc = "[f]or[m]at",
+			},
+		},
+	},
 }

@@ -58,23 +58,6 @@ cmp.setup {
 require('mason').setup()
 require('mason-lspconfig').setup({
 	automatic_installation = true,
-	ensure_installed = {
-		-- lua
-		"lua_ls",
-		-- web dev
-		"cssls",
-		"html",
-		--python
-		"pyright",
-		-- C++
-		"clangd",
-		-- Docker
-		"dockerls",
-		-- Rust
-		"rust_analyzer",
-		-- Bash
-		"bashls",
-	},
 	automatic_enable = true,
 })
 
@@ -117,7 +100,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		bufmap("n", "<leader>vca", function() vim.lsp.buf.code_action() end, "[v]iew [c]ode [a]ction")
 		bufmap("n", "<leader>vrr", function() vim.lsp.buf.references() end, "[v]iew code [r]eferences")
 		bufmap("n", "<leader>vrn", function() vim.lsp.buf.rename() end, "[r]e[n]ame")
-		bufmap("n", "<leader>fm", function() vim.lsp.buf.format { async = true } end, "LSP [f]or[m]at")
 		bufmap("i", "<leader>hs", function() vim.lsp.buf.signature_help() end, "[h]elp [s]ignature")
 	end
 })
