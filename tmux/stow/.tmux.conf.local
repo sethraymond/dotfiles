@@ -393,6 +393,7 @@ bind-key x kill-pane # skip "kill-pane 1? (y/n)" prompt
 set -g detach-on-destroy off  # don't exit from tmux when closing a session
 
 set-hook -g client-attached 'run-shell "for var in WAYLAND_DISPLAY XDG_RUNTIME_DIR; do [ -n \${!var} ] && tmux set-environment -g $var \${!var}; done"'
+set -g @resurrect-hook-post-restore 'restore-wayland-display.sh'
 
 # -- tpm -----------------------------------------------------------------------
 
