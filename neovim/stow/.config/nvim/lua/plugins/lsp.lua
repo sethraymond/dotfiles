@@ -1,17 +1,20 @@
 return {
 	{
-		'mason-org/mason-lspconfig.nvim',
+		"mason-org/mason-lspconfig.nvim",
 		opts = {},
 		dependencies = {
-			{ 'mason-org/mason.nvim', opts = {} },
-			'neovim/nvim-lspconfig',
+			{ "mason-org/mason.nvim", opts = {} },
+			"neovim/nvim-lspconfig",
 		},
 	},
-	{'L3MON4D3/LuaSnip'},
-	{'mfussenegger/nvim-lint'},
-	{'onsails/lspkind.nvim'},
 	{
-		'folke/lazydev.nvim',
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
+	},
+	{ "L3MON4D3/LuaSnip" },
+	{ "mfussenegger/nvim-lint" },
+	{ "onsails/lspkind.nvim" },
+	{
+		"folke/lazydev.nvim",
 		ft = "lua",
 		opts = {
 			library = {
@@ -20,7 +23,7 @@ return {
 		},
 	},
 	{
-		'hrsh7th/nvim-cmp',
+		"hrsh7th/nvim-cmp",
 		opts = function(_, opts)
 			opts.sources = opts.sources or {}
 			table.insert(opts.sources, {
@@ -29,26 +32,28 @@ return {
 			})
 		end,
 	},
-	{'hrsh7th/cmp-nvim-lsp'},
+	{ "hrsh7th/cmp-nvim-lsp" },
 	{
-	  "linux-cultist/venv-selector.nvim",
-	  dependencies = {
-		"neovim/nvim-lspconfig",
-		"mfussenegger/nvim-dap", "mfussenegger/nvim-dap-python", --optional
-		{ "nvim-telescope/telescope.nvim", branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
-	  },
-	  lazy = false,
-	  keys = {
-		{ ",v", "<cmd>VenvSelect<cr>" },
-	  },
-	  ---@type venv-selector.Config
-	  opts = {
-		search = {
-			my_venvs = {
-				command = "fd python$ /opt/venv/"
-			}
-		}
-	  },
+		"linux-cultist/venv-selector.nvim",
+		dependencies = {
+			"neovim/nvim-lspconfig",
+			"mfussenegger/nvim-dap",
+			"mfussenegger/nvim-dap-python", --optional
+			{ "nvim-telescope/telescope.nvim", branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
+		},
+		branch = "main",
+		lazy = false,
+		keys = {
+			{ ",v", "<cmd>VenvSelect<cr>" },
+		},
+		---@type venv-selector.Config
+		opts = {
+			search = {
+				my_venvs = {
+					command = "fd python$ /opt/venv/",
+				},
+			},
+		},
 	},
 	{
 		"stevearc/conform.nvim",
@@ -62,7 +67,7 @@ return {
 			format_on_save = { timeout_ms = 500 },
 			formatters = {
 				clang_format = {
-					prepend_args = { '--style=file' },
+					prepend_args = { "--style=file" },
 				},
 			},
 		},
@@ -72,7 +77,7 @@ return {
 			{
 				"<leader>fm",
 				function()
-					require("conform").format({async = true})
+					require("conform").format({ async = true })
 				end,
 				mode = "",
 				desc = "[f]or[m]at",
