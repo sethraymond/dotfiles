@@ -46,7 +46,7 @@ do
     process_module $module
 done
 
-declare -a desktop_modules=("fontconfig" "fuzzel" "kitty" "mako" "niri" "swaylock" "tmux" "waybar")
+declare -a desktop_modules=("fontconfig" "kitty" "niri" "tmux" "noctalia")
 desktop=false
 while [[ $# -gt 0 ]]; do
     case "$1" in

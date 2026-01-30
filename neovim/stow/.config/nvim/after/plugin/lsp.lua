@@ -85,6 +85,7 @@ require("mason-tool-installer").setup({
 		-- C/C++
 		"clangd",
 		"clang-format",
+		"cmake-language-server",
 		-- Python
 		"pyright",
 		"isort",
@@ -101,6 +102,10 @@ require("mason-tool-installer").setup({
 		"bashls",
 		-- bitbake
 		"language-server-bitbake",
+		-- json
+		"jsonlint",
+		-- markdown
+		"vale",
 	},
 })
 

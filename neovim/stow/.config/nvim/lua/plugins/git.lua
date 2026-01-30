@@ -8,7 +8,7 @@ return {
 	},
 	{
 		"f-person/git-blame.nvim",
-		lazy = false
+		lazy = false,
 	},
 	{
 		"kdheepak/lazygit.nvim",
@@ -26,5 +26,8 @@ return {
 		keys = {
 			{ "<leader>lg", "<cmd>LazyGit<cr>", desc = "[L]azy[G]it" },
 		},
+	},
+	{
+		"ThePrimeagen/git-worktree.nvim",
 	},
 }

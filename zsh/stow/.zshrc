@@ -103,6 +103,9 @@ fi
 
 if command -v op &> /dev/null; then
   eval "$(op completion zsh)"; compdef _op op
+  if [ -d "${HOME}/.config/op" ]; then
+    source "${HOME}/.config/op/plugins.sh"
+  fi
 fi
 
 if [ -d "/usr/local/share/nvm" ]; then
@@ -118,4 +121,5 @@ if [ -d "/opt/forticlient" ]; then
   export PATH="$PATH:/opt/forticlient"
 fi
 
+export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent-proxy.sock"
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/oh-my-posh.toml)"

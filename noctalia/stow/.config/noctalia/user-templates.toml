@@ -1,0 +1,4 @@
+[templates.nvim-onedark]
+input_path = "~/.config/nvim/lua/noctalia/onedark-template.lua"
+output_path = "~/.config/nvim/lua/noctalia/onedark.lua"
+post_hook = 'pkill -SIGUSR1 nvim'

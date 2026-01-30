@@ -380,20 +380,21 @@ set -g allow-passthrough
 bind-key "T" run-shell "sesh connect \"$(
 	sesh list | fzf-tmux -p 55%,60% \
 		--header '  ^a all ^t tmux ^g configs ^x zoxide ^d tmux kill ' \
-		--no-sort  --prompt '⚡  ' \
+		--no-sort  --prompt ' ' \
 		--bind 'tab:up,btab:down' \
-		--bind 'ctrl-a:change-prompt(⚡  )+reload(sesh list)' \
+		--bind 'ctrl-a:change-prompt(   )+reload(sesh list)' \
 		--bind 'ctrl-t:change-prompt( )+reload(sesh list -t)' \
-		--bind 'ctrl-g:change-prompt(⚙️  )+reload(sesh list -c)' \
-		--bind 'ctrl-x:change-prompt(📁  )+reload(sesh list -z)' \
-		--bind 'ctrl-d:execute(tmux kill-session -t {})+change-prompt(⚡  )+reload(sesh list)'
+		--bind 'ctrl-g:change-prompt(  )+reload(sesh list -c)' \
+		--bind 'ctrl-x:change-prompt(  )+reload(sesh list -z)' \
+		--bind 'ctrl-d:execute(tmux kill-session -t {})+change-prompt( )+reload(sesh list)'
 )\""
 
 bind-key x kill-pane # skip "kill-pane 1? (y/n)" prompt
 set -g detach-on-destroy off  # don't exit from tmux when closing a session
 
-set-hook -g client-attached 'run-shell "for var in WAYLAND_DISPLAY XDG_RUNTIME_DIR; do [ -n \${!var} ] && tmux set-environment -g $var \${!var}; done"'
-set -g @resurrect-hook-post-restore 'restore-wayland-display.sh'
+set -g update-environment "WAYLAND_DISPLAY SSH_AUTH_SOCK SSH_AGENT_PID XDG_RUNTIME_DIR"
+set-hook -g client-attached 'run-shell "for var in WAYLAND_DISPLAY XDG_RUNTIME_DIR SSH_AUTH_SOCK; do [ -n \${!var} ] && tmux set-environment -g $var \${!var}; done"'
+# set -g @resurrect-hook-post-restore 'restore-wayland-display.sh'
 
 # -- tpm -----------------------------------------------------------------------
 
@@ -439,6 +440,7 @@ set -g @plugin 'thewtex/tmux-mem-cpu-load'
 set -g @plugin 'christoomey/vim-tmux-navigator'
 set -g @continuum-boot 'on'
 set -g @continuum-restore 'on'
+set -g @continuum-boot-options 'kitty,fullscreen'
 
 
 # -- custom variables ----------------------------------------------------------
