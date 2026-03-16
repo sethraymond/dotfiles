@@ -1,0 +1,9 @@
+[Unit]
+Description=KMonad Home Row Keys
+
+[Service]
+ExecStart=/usr/bin/kmonad /home/%u/home-row-mods.kbd
+Restart=always
+
+[Install]
+WantedBy=default.target

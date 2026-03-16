@@ -103,7 +103,7 @@ sshagent_init
 #GPG_TTY=$(tty)
 #export GPG_TTY
 export PATH=$PATH
-export SSH_AUTH_SOCK=${HOME}/.1password/agent.sock
 if [ -f "$HOME/.cargo/env" ]; then
     . "$HOME/.cargo/env"
 fi
+export QT_QPA_PLATFORMTHEME=qt6ct

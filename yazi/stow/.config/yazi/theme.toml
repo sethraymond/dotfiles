@@ -26,3 +26,7 @@ hint       = "#d19a66"   # Yellow/Orange
 directory  = "#61afef"
 symlink    = "#56b6c2"
 executable = "#98c379"
+
+[flavor]
+dark  = "noctalia"
+light = "noctalia"

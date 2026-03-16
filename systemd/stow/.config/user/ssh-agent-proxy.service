@@ -1,0 +1,9 @@
+[Unit]
+Description=Proxy SSH agent connections to 1Password
+# Make sure the socket is up before the service:
+Requires=ssh-agent-proxy.socket
+After=ssh-agent-proxy.socket
+
+[Service]
+# One proxy instance handles all connections
+ExecStart=/usr/lib/systemd/systemd-socket-proxyd %h/.1password/agent.sock

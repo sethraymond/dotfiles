@@ -1,0 +1,19 @@
+[Unit]
+Description=tmux default session (detached)
+Documentation=man:tmux(1)
+After=ssh-agent-proxy.socket
+
+[Service]
+Type=forking
+Environment=WAYLAND_DISPLAY=wayland-1
+Environment=SSH_AUTH_SOCK=%t/ssh-agent-proxy-sock
+ExecStart=/usr/bin/tmux new-session -d
+
+ExecStop=/home/seth/.tmux/plugins/tmux-resurrect/scripts/save.sh
+ExecStop=/usr/bin/tmux kill-server
+KillMode=control-group
+
+RestartSec=2
+
+[Install]
+WantedBy=default.target

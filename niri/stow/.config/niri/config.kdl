@@ -292,9 +292,6 @@ layout {
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
 
-// This line starts waybar, a commonly used bar for Wayland compositors.
-// Already starts with systemd
-// spawn-at-startup "waybar"
 spawn-at-startup "firefox"
 spawn-at-startup "1password"
 
@@ -649,4 +646,11 @@ debug {
 }
 
 include "./noctalia.kdl"
-
+spawn-at-startup "qs" "-c" "noctalia-shell"
+hotkey-overlay {
+    skip-at-startup
+    hide-not-bound
+}
+environment {
+    QT_QPA_PLATFORMTHEME "qt6ct"
+}

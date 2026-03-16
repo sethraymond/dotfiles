@@ -1,0 +1,13 @@
+[Unit]
+Description=Stable SSH agent socket (proxied to 1Password)
+
+[Socket]
+# %t = XDG_RUNTIME_DIR, perfect for per-boot tmp
+ListenStream=%t/ssh-agent-proxy.sock
+SocketMode=0660
+SocketUser=%u
+# optionally, allow a group inside containers to connect:
+# SocketGroup=docker
+
+[Install]
+WantedBy=default.target
