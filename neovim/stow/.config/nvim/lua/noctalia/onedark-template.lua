@@ -3,30 +3,51 @@
 
 local M = {}
 
-function M.apply()
+function M.apply_noctalia_theme()
 	require("onedark").setup({
 		colors = {
+			black = "#0e1013",
 			bg0 = "{{colors.surface.default.hex}}",
 			bg1 = "{{colors.surface_container.default.hex}}",
 			bg2 = "{{colors.surface_container_high.default.hex}}",
 			bg3 = "{{colors.outline.default.hex}}",
+			bg_d = "{{colors.shadow.default.hex}}",
+			bg_blue = "{{colors.secondary.default.hex}}",
+			bg_yellow = "#e8c88c",
 			fg = "{{colors.on_surface.default.hex}}",
 			fg_dark = "{{colors.on_surface_variant.default.hex}}",
 			fg_light = "{{colors.on_background.default.hex}}",
 
-			red = "{{colors.error.default.hex}}",
-			orange = "{{colors.tertiary.default.hex}}",
-			yellow = "{{colors.secondary.default.hex}}",
-			green = "{{colors.primary.default.hex}}",
-			cyan = "{{colors.tertiary_fixed_dim.default.hex}}",
+			purple = "{{colors.tertiary_fixed_dim.default.hex}}",
+			green = "{{colors.secondary.default.hex}}",
+			orange = "#cc9057",
 			blue = "{{colors.primary_fixed_dim.default.hex}}",
-			purple = "{{colors.secondary_fixed_dim.default.hex}}",
+			yellow = "#e2b86b",
+			cyan = "#48b0bd",
+			red = "{{colors.error.default.hex}}",
+			grey = "#535965",
+
+			light_grey = "#7a818e",
+			dark_cyan = "#266269",
+			dark_red = "{{colors.error_container.default.hex}}",
+			dark_yellow = "#835d1a",
+			dark_purple = "#7e3992",
+			diff_add = "#272e23",
+			diff_delete = "#2d2223",
+			diff_change = "#172a3a",
+			diff_text = "#274964",
 
 			comment = "{{colors.outline.default.hex}}",
-			dark_red = "{{colors.error_container.default.hex}}",
 		},
 	})
 
+	require("onedark").load()
+end
+
+function M.apply()
+	require("onedark").setup({
+		style = "dark",
+	})
 	require("onedark").load()
 end
 
