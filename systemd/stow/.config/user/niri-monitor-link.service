@@ -1,0 +1,12 @@
+[Unit]
+Description=Update niri monitor config symlink on compositor events
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/bin/sh -lc '~/.config/niri/scripts/select-monitor-config.sh; niri msg --json event-stream | while read -r _; do ~/.config/niri/scripts/select-monitor-config.sh; done'
+Restart=always
+RestartSec=1
+
+[Install]
+WantedBy=default.target

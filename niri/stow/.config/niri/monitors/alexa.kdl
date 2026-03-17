@@ -1,0 +1,12 @@
+output "Dell Inc. DELL P2219H F833Q63" {
+    mode "1920x1080@60.000"
+    scale 1
+    transform "normal"
+    position x=1920 y=0
+}
+output "Dell Inc. DELL P2219H JQZMF03" {
+    mode "1920x1080@60.000"
+    scale 1
+    transform "normal"
+    position x=0 y=0
+}

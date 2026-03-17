@@ -571,7 +571,7 @@ debug {
 }
 
 include "./noctalia.kdl"
-include "./monitors.kdl"
+include "./monitors/monitors.kdl"
 
 spawn-at-startup "qs" "-c" "noctalia-shell"
 hotkey-overlay {
