@@ -4,7 +4,7 @@ After=graphical-session.target
 
 [Service]
 Type=simple
-ExecStart=/bin/sh -lc '~/.config/niri/scripts/select-monitor-config.sh; niri msg --json event-stream | while read -r _; do ~/.config/niri/scripts/select-monitor-config.sh; done'
+ExecStart=/bin/sh -lc '~/.config/niri/scripts/select-monitor-config; niri msg --json event-stream | while read -r _; do ~/.config/niri/scripts/select-monitor-config; done'
 Restart=always
 RestartSec=1
 
