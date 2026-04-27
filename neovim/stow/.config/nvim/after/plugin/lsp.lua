@@ -146,6 +146,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		bufmap("i", "<leader>hs", function()
 			vim.lsp.buf.signature_help()
 		end, "[h]elp [s]ignature")
+		bufmap("n", "<leader>ss", vim.cmd.LspClangdSwitchSourceHeader, "[s]wap [s]ource and header")
 	end,
 })
 
