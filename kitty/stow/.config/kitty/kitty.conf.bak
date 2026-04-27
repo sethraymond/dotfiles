@@ -10,5 +10,5 @@ bold_italic_font auto
 
 # BEGIN_KITTY_THEME
 # Noctalia
-include current-theme.conf
+include themes/colors.conf
 # END_KITTY_THEME

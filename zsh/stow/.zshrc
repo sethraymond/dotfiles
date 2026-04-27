@@ -42,6 +42,7 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 export MANPATH="/usr/local/man:$MANPATH"
 
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#646669"
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 if [ -d "/usr/local/go/bin" ] ; then
