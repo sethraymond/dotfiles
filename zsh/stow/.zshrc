@@ -122,5 +122,9 @@ if [ -d "/opt/forticlient" ]; then
   export PATH="$PATH:/opt/forticlient"
 fi
 
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent-proxy.sock"
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/oh-my-posh.toml)"
