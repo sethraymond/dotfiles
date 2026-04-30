@@ -64,8 +64,14 @@ profile work {
     output $work_primary enable
     output $work_secondary enable
     output $internal enable
-    exec "niri msg action move-workspace-to-monitor --reference chat '$internal'"
-    exec "niri msg action move-workspace-to-monitor --reference email '$work_secondary'"
+    exec niri msg action move-workspace-to-monitor --reference chat "eDP-1"
+    exec niri msg action move-workspace-to-index --reference chat 1
+    exec niri msg action focus-workspace chat
+    exec niri msg action move-workspace-to-monitor --reference focus "Samsung Electric Company LS27B61x H9DX700360"
+    exec niri msg action move-workspace-to-index --reference focus 1
+    exec niri msg action move-workspace-to-monitor --reference email "Samsung Electric Company LS27B61x H9DX700360"
+    exec niri msg action move-workspace-to-index --reference email 2
+    exec niri msg action focus-workspace focus
 }
 
 profile home-office {
@@ -73,14 +79,28 @@ profile home-office {
     output $home_secondary enable
     output $home_tertiary enable
     output $internal disable
-    exec "niri msg action move-workspace-to-monitor --reference 'chat' '$home_tertiary'"
+    exec niri msg action move-workspace-to-monitor --reference chat "Dell Inc. DELL U2417H XVNNT89FAQNL"
+    exec niri msg action move-workspace-to-index --reference chat 1
+    exec niri msg action focus-workspace chat
+    exec niri msg action move-workspace-to-monitor --reference focus "Acer Technologies XB271HU T4TAA0018500"
+    exec niri msg action move-workspace-to-index --reference focus 1
+    exec niri msg action move-workspace-to-monitor --reference email "Acer Technologies XB271HU T4TAA0018500"
+    exec niri msg action move-workspace-to-index --reference email 2
+    exec niri msg action focus-workspace focus
 }
 
 profile alexa-office {
-  output $alexa_primary enable
-  output $alexa_secondary enable
-  output $internal disable
-  exec "niri msg action move-workspace-to-monitor --reference 'chat' '$alexa_primary"
+    output $alexa_primary enable
+    output $alexa_secondary enable
+    output $internal disable
+    exec niri msg action move-workspace-to-monitor --reference chat "Dell Inc. DELL P2219H JQZMF03"
+    exec niri msg action move-workspace-to-index --reference chat 1
+    exec niri msg action focus-workspace chat
+    exec niri msg action move-workspace-to-monitor --reference focus "Dell Inc. DELL P2219H F833Q63"
+    exec niri msg action move-workspace-to-index --reference focus 1
+    exec niri msg action move-workspace-to-monitor --reference email "Dell Inc. DELL P2219H F833Q63"
+    exec niri msg action move-workspace-to-index --reference email 2
+    exec niri msg action focus-workspace focus
 }
 
 profile roaming {
