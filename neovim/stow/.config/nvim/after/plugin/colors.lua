@@ -1,3 +1,25 @@
+local function get_hl(name)
+	local ok, hl = pcall(vim.api.nvim_get_hl, 0, { name = name })
+	return ok and hl or {}
+end
+
+local function apply_telescope_highlights()
+	local normal = get_hl("Normal")
+	local popup_selection = get_hl("PmenuSel")
+	local search = get_hl("Search")
+	local special = get_hl("Special")
+	local visual = get_hl("Visual")
+
+	local selection_bg = popup_selection.bg or visual.bg or 0x393e47
+	local match_fg = search.bg or special.fg or normal.fg or 0xeac786
+
+	vim.api.nvim_set_hl(0, "TelescopeSelection", { bg = selection_bg, fg = normal.fg or 0xc9ccd3, bold = true })
+	vim.api.nvim_set_hl(0, "TelescopeSelectionCaret", { bg = selection_bg, fg = match_fg, bold = true })
+	vim.api.nvim_set_hl(0, "TelescopePreviewLine", { bg = selection_bg })
+	vim.api.nvim_set_hl(0, "TelescopePreviewMatch", { bg = search.bg or match_fg, fg = search.fg or normal.bg, bold = true })
+	vim.api.nvim_set_hl(0, "TelescopeMatching", { fg = match_fg, bold = true })
+end
+
 local function apply()
 	-- Clear cache so re-requiring picks up newly-generated colors
 	package.loaded["noctalia.onedark-two"] = nil
@@ -7,6 +29,8 @@ local function apply()
 	if ok and mod and mod.setup then
 		mod.setup()
 	end
+
+	apply_telescope_highlights()
 end
 
 apply()

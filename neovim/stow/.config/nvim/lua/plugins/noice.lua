@@ -10,5 +10,13 @@ return {
 		},
 	},
 	{ "MunifTanjim/nui.nvim" },
-	{ "rcarriga/nvim-notify" },
+	{
+		"rcarriga/nvim-notify",
+		config = function()
+			require("telescope").load_extension("notify")
+		end,
+		dependencies = {
+			"nvim-telescope/telescope.nvim",
+		},
+	},
 }

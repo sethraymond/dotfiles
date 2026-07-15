@@ -6,14 +6,6 @@ output "Acer Technologies XB271HU T4TAA0018500" {
   alias $home_primary
 }
 
-output "Dell Inc. DELL U2417H XVNNT89FAQNL" {
-  mode 1920x1080@60.000
-  scale 1
-  transform 270
-  position 0,-250
-  alias $home_tertiary
-}
-
 output "Dell Inc. DELL U2717D 67YGV96O665U" {
   mode 2560x1440@59.951
   scale 1
@@ -22,19 +14,27 @@ output "Dell Inc. DELL U2717D 67YGV96O665U" {
   alias $home_secondary
 }
 
-output "Samsung Electric Company LS27B61x H9DX700360" {
-  mode 2560x1440@59.951
+output "Dell Inc. DELL U2417H XVNNT89FAQNL" {
+  mode 1920x1080@60.000
   scale 1
-  transform "normal"
-  position 1920,-1050
-  alias $work_primary
+  transform 270
+  position 0,-250
+  alias $home_tertiary
 }
 
 output "Samsung Electric Company LS27B61x H4TW800146" {
   mode 2560x1440@59.951
   scale 1
   transform "normal"
-  position 4480,-1050
+  position 1920,-850
+  alias $work_primary
+}
+
+output "Samsung Electric Company LS27B61x H9DX700360"  {
+  mode 2560x1440@59.951
+  scale 1
+  transform "normal"
+  position 4480,-850
   alias $work_secondary
 }
 
@@ -67,9 +67,9 @@ profile work {
     exec niri msg action move-workspace-to-monitor --reference chat "eDP-1"
     exec niri msg action move-workspace-to-index --reference chat 1
     exec niri msg action focus-workspace chat
-    exec niri msg action move-workspace-to-monitor --reference focus "Samsung Electric Company LS27B61x H9DX700360"
+    exec niri msg action move-workspace-to-monitor --reference focus "Samsung Electric Company LS27B61x H4TW800146"
     exec niri msg action move-workspace-to-index --reference focus 1
-    exec niri msg action move-workspace-to-monitor --reference email "Samsung Electric Company LS27B61x H9DX700360"
+    exec niri msg action move-workspace-to-monitor --reference email "Samsung Electric Company LS27B61x H4TW800146"
     exec niri msg action move-workspace-to-index --reference email 2
     exec niri msg action focus-workspace focus
 }
