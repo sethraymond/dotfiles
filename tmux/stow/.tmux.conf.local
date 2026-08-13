@@ -338,8 +338,6 @@ tmux_conf_copy_to_os_clipboard=true
 # -- user customizations -------------------------------------------------------
 # this is the place to override or undo settings
 
-set-option -g update-environment
-
 # sync colors between terminal and nvim
 set-option -sa terminal-overrides ",xterm*:Tc"
 
@@ -348,6 +346,9 @@ set-option -s exit-unattached off
 
 # increase history size
 set -g history-limit 10000
+
+set -g allow-passthrough on
+set -g update-environment "TERM TERM_PROGRAM WAYLAND_DISPLAY SSH_AUTH_SOCK SSH_AGENT_PID XDG_RUNTIME_DIR"
 
 # start with mouse mode enabled
 set -g mouse on
@@ -358,14 +359,13 @@ set -g status-keys vi
 set -g mode-keys vi
 
 # split panes with | and -
-bind -n M-\\ split-window -h
-bind -n M-- split-window -v
+bind -n \\ split-window -h
+bind -n - split-window -v
 unbind '"'
 unbind \%
 
 # OSC 52 support
 set -s set-clipboard on
-set -g allow-passthrough
 
 # replace C-b by C-a instead of using both prefixes
 # set -gu prefix2
