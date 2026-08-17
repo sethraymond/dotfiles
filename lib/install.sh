@@ -91,6 +91,20 @@ install_packages() {
     esac
 }
 
+install_package_for_manager() {
+    local apt_package="$1"
+    local arch_package="${2:-$apt_package}"
+
+    case "$(package_manager)" in
+        apt-get)
+            install_packages "$apt_package"
+            ;;
+        pacman|yay)
+            install_packages "$arch_package"
+            ;;
+    esac
+}
+
 refresh_package_index() {
     case "$(package_manager)" in
         apt-get)
@@ -112,6 +126,19 @@ ensure_command() {
 
     log "Installing $package_name"
     install_packages "$package_name"
+}
+
+remove_local_bin_shadow() {
+    local command_name="$1"
+    local target="$HOME/.local/bin/$command_name"
+
+    if [ -L "$target" ] || [ -f "$target" ]; then
+        log "Removing $target so package-managed $command_name is used"
+        rm -f "$target"
+        hash -r 2>/dev/null || true
+    elif [ -e "$target" ]; then
+        die "$target exists but is not a file or symlink"
+    fi
 }
 
 ensure_local_bin() {
@@ -153,14 +180,16 @@ go_architecture() {
 }
 
 ensure_go_path() {
-    case ":$PATH:" in
-        *:/usr/local/go/bin:*)
-            ;;
-        *)
-            PATH="/usr/local/go/bin:$PATH"
-            export PATH
-            ;;
-    esac
+    if [ -d /usr/local/go/bin ]; then
+        case ":$PATH:" in
+            *:/usr/local/go/bin:*)
+                ;;
+            *)
+                PATH="/usr/local/go/bin:$PATH"
+                export PATH
+                ;;
+        esac
+    fi
 
     if has go; then
         local go_path
@@ -179,7 +208,21 @@ ensure_go_path() {
     fi
 }
 
-ensure_go() {
+ensure_go_from_package() {
+    install_package_for_manager golang-go go
+
+    if [ -d /usr/local/go ]; then
+        log "Removing /usr/local/go so package-managed Go is used"
+        run_as_root rm -rf /usr/local/go
+        hash -r 2>/dev/null || true
+    fi
+
+    has go || die "Go was installed, but go was not found"
+    ensure_go_path
+    log "Go $(go env GOVERSION) installed"
+}
+
+ensure_go_from_github() {
     local version="${DOTFILES_GO_VERSION:-1.26.6}"
 
     ensure_go_path
@@ -210,4 +253,18 @@ ensure_go() {
     log "Go $(go env GOVERSION) installed"
 
     rm -rf "$tmp"
+}
+
+ensure_go() {
+    case "${DOTFILES_GO_SOURCE:-package}" in
+        package)
+            ensure_go_from_package
+            ;;
+        github)
+            ensure_go_from_github
+            ;;
+        *)
+            die "Unsupported DOTFILES_GO_SOURCE: $DOTFILES_GO_SOURCE"
+            ;;
+    esac
 }

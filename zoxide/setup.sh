@@ -5,17 +5,10 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 source "$ROOT/lib/install.sh"
 
-if has zoxide; then
-    log "zoxide already exists"
-    exit 0
-fi
+log "Installing zoxide from package manager"
+install_packages zoxide
+remove_local_bin_shadow zoxide
 
-ensure_command curl
-ensure_local_bin
-
-log "Installing zoxide"
-
-curl -fsSL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh |
-    sh
+has zoxide || die "zoxide was installed, but zoxide was not found"
 
 log "zoxide installed"

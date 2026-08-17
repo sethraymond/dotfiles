@@ -5,12 +5,14 @@ typeset -U path PATH
 
 path=(
   "$HOME/.local/bin"
-  "$HOME/neovim/bin"
   "$HOME/go/bin"
-  /usr/local/go/bin
-  /opt/forticlient
   $path
 )
+
+for tool_path in /opt/forticlient /usr/local/go/bin "$HOME/neovim/bin"; do
+  [[ -d "$tool_path" ]] && path=("$tool_path" $path)
+done
+unset tool_path
 
 export MANPATH="/usr/local/man:${MANPATH:-}"
 export EDITOR="vim"

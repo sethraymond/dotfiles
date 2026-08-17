@@ -5,47 +5,27 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 source "$ROOT/lib/install.sh"
 
-if has kitty; then
-    log "kitty already exists"
-    exit 0
+log "Installing Kitty from package manager"
+install_packages kitty
+remove_local_bin_shadow kitty
+remove_local_bin_shadow kitten
+
+install_dir="$HOME/.local/kitty.app"
+if [ -x "$install_dir/bin/kitty" ]; then
+    log "Removing $install_dir so package-managed Kitty is used"
+    rm -rf "$install_dir"
+elif [ -e "$install_dir" ]; then
+    die "$install_dir exists but does not look like a managed Kitty install"
 fi
 
-ensure_command curl
-ensure_local_bin
-
-log "Installing Kitty"
-
-mkdir -p \
-    "$HOME/.local/share/applications"
-
-curl -fsSL https://sw.kovidgoyal.net/kitty/installer.sh |
-    sh /dev/stdin launch=n
-
-ln -sf \
-    "$HOME/.local/kitty.app/bin/kitty" \
-    "$HOME/.local/bin/kitty"
-
-ln -sf \
-    "$HOME/.local/kitty.app/bin/kitten" \
-    "$HOME/.local/bin/kitten"
-
-cp \
-    "$HOME/.local/kitty.app/share/applications/kitty.desktop" \
-    "$HOME/.local/share/applications/kitty.desktop"
-
-cp \
-    "$HOME/.local/kitty.app/share/applications/kitty-open.desktop" \
+rm -f \
+    "$HOME/.local/share/applications/kitty.desktop" \
     "$HOME/.local/share/applications/kitty-open.desktop"
-
-sed -i \
-    "s|Icon=kitty|Icon=$HOME/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" \
-    "$HOME/.local/share/applications/kitty"*.desktop
-
-sed -i \
-    "s|Exec=kitty|Exec=$HOME/.local/kitty.app/bin/kitty|g" \
-    "$HOME/.local/share/applications/kitty"*.desktop
 
 mkdir -p "$HOME/.config"
 printf '%s\n' 'kitty.desktop' > "$HOME/.config/xdg-terminals.list"
+
+has kitty || die "kitty was installed, but kitty was not found"
+has kitten || die "kitty was installed, but kitten was not found"
 
 log "Kitty installed"

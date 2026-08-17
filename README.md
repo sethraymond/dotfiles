@@ -7,8 +7,13 @@ and by downloading release artifacts where that is more appropriate.
 Package manager detection prefers `yay` when it is available and the installer
 is not running as root, then falls back to `pacman`, then `apt-get`. Set
 `DOTFILES_PACKAGE_MANAGER` to `yay`, `pacman`, or `apt-get` to force one.
-The installer also installs Go from the official Linux tarball. Set
-`DOTFILES_GO_VERSION` to override the default Go version.
+The installer installs Go from the package manager by default. Set
+`DOTFILES_GO_SOURCE=github` and optionally `DOTFILES_GO_VERSION` to use the
+official Linux tarball instead.
+Neovim setup installs Neovim and Tree-sitter through the package manager by
+default. Set `DOTFILES_NEOVIM_SOURCE=github` or
+`DOTFILES_TREE_SITTER_SOURCE=github` to use the upstream GitHub binaries
+instead.
 
 NOTE: System configuration isn't actually working quite yet...
 
