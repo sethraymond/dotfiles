@@ -5,10 +5,10 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 source "$ROOT/lib/install.sh"
 
-if has vim; then
-    log "Vim already exists"
+if has fc-match; then
+    log "fontconfig already exists"
     exit 0
 fi
 
-ensure_command vim
-log "Vim installed"
+ensure_command fc-match fontconfig
+log "fontconfig installed"

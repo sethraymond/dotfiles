@@ -1,53 +1,42 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Shamelessly borrowed from benjamg/dotfiles
 
-set -e
+set -euo pipefail
 
-ERROR_APP_NAME=$0
 base_dir=$( cd -- "$(dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd)
+source "$base_dir/lib/install.sh"
 
-function die()
-{
-    echo "${ERROR_APP_NAME}: ${1}" 1>&2
-    exit 1
-}
+process_module() {
+    local module="$1"
 
-function process_module()
-{
-    if [[ ! -d "${base_dir}/$1" ]]; then
-        die "Unable to locate module '$1'"
+    if [[ ! -d "${base_dir}/$module" ]]; then
+        die "Unable to locate module '$module'"
     fi
 
-    if [[ -d "${base_dir}/$1/stow" ]]; then
-        stow -v -d "${base_dir}/$1" -t "${HOME}" stow
+    if [[ -d "${base_dir}/$module/stow" ]]; then
+        log "Stowing $module"
+        stow -v -d "${base_dir}/$module" -t "${HOME}" stow
     fi
 
-    if [[ -f "${base_dir}/$1/setup.sh" ]]; then
-        ${base_dir}/$1/setup.sh
+    if [[ -f "${base_dir}/$module/setup.sh" ]]; then
+        log "Running $module setup"
+        "${base_dir}/$module/setup.sh"
     fi
 }
 
-declare -a common_preinstalled_files=("${HOME}/.zshrc" "${HOME}/.zprofile" "${HOME}/.bashrc" "${HOME}/.profile" "${HOME}/.gitconfig")
-for f in "${common_preinstalled_files[@]}"
-do
-    if [ ! -L "$f" ] && [ -e "$f" ]; then  # if it's not a link, it's definitely not owned by stow
-        echo "Found $f, saving off as ${f}.old..."
-        mv "$f" "${f}.old"
-    fi
-done
+install_prerequisites() {
+    log "Installing prerequisites"
+    refresh_package_index
+    ensure_command git
+    ensure_command stow
+    ensure_command curl
+    ensure_command tar
+    ensure_go
+}
 
-mkdir -p "${HOME}/.config"
-
-basedir=`pwd`
-declare -a modules=("bash" "bat" "fzf" "git" "lazygit" "neovim" "ohmyposh" "shell" "vim" "yazi" "zsh")
-for module in "${modules[@]}"
-do
-    process_module $module
-done
-
-declare -a desktop_modules=("fontconfig" "kitty" "niri" "tmux" "noctalia")
 desktop=false
+
 while [[ $# -gt 0 ]]; do
     case "$1" in
         --desktop)
@@ -59,14 +48,34 @@ while [[ $# -gt 0 ]]; do
             break
             ;;
         *)
-            break
+            die "Unknown argument: $1"
             ;;
     esac
 done
 
+install_prerequisites
+
+declare -a common_preinstalled_files=("${HOME}/.zshrc" "${HOME}/.zprofile" "${HOME}/.bashrc" "${HOME}/.profile" "${HOME}/.gitconfig")
+for f in "${common_preinstalled_files[@]}"
+do
+    if [ ! -L "$f" ] && [ -e "$f" ]; then  # if it's not a link, it's definitely not owned by stow
+        log "Found $f, saving off as ${f}.old"
+        mv "$f" "${f}.old"
+    fi
+done
+
+mkdir -p "${HOME}/.config"
+
+declare -a modules=("bash" "shell" "git" "bat" "fzf" "zoxide" "lazygit" "neovim" "ohmyposh" "vim" "yazi" "zsh")
+for module in "${modules[@]}"
+do
+    process_module "$module"
+done
+
 if $desktop; then
+    declare -a desktop_modules=("fontconfig" "kitty" "kanshi" "niri" "tmux" "noctalia")
     for module in "${desktop_modules[@]}"
     do
-        process_module $module
+        process_module "$module"
     done
 fi
