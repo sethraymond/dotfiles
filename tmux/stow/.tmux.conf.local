@@ -359,8 +359,8 @@ set -g status-keys vi
 set -g mode-keys vi
 
 # split panes with | and -
-bind -n \\ split-window -h
-bind -n - split-window -v
+bind -T prefix '\' split-window -h
+bind -T prefix '-' split-window -v
 unbind '"'
 unbind \%
 
@@ -392,7 +392,7 @@ bind-key "T" run-shell "sesh connect \"$(
 bind-key x kill-pane # skip "kill-pane 1? (y/n)" prompt
 set -g detach-on-destroy off  # don't exit from tmux when closing a session
 
-set -g update-environment "WAYLAND_DISPLAY SSH_AUTH_SOCK SSH_AGENT_PID XDG_RUNTIME_DIR"
+set -g update-environment "WAYLAND_DISPLAY SSH_AUTH_SOCK SSH_AGENT_PID XDG_RUNTIME_DIR NIRI_SOCKET"
 set-hook -g client-attached 'run-shell "for var in WAYLAND_DISPLAY XDG_RUNTIME_DIR SSH_AUTH_SOCK; do [ -n \${!var} ] && tmux set-environment -g $var \${!var}; done"'
 # set -g @resurrect-hook-post-restore 'restore-wayland-display.sh'
 
